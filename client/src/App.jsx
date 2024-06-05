@@ -5,7 +5,7 @@ import Commercial from './components/Commercial';
 import Invoices from './components/Invoices';
 import ViewCommercial from './components/ViewCommercial';
 import Navbar from './components/Header';
-import Dma from './components/Dma';
+import Proforma from './components/Proforma';
 function App() {
     const [data, setData] = useState([]);
 
@@ -17,7 +17,8 @@ function App() {
                     <Route path="/" element={<Commercial />} />
                     <Route path="/invoices" element={<Invoices />} />
                     <Route path="/invoice/:id" element={<ViewCommercial />} />
-                    <Route path="/dma" element={<Dma />} />
+                    <Route path="/proforma" element={<Proforma />} />
+                    <Route path="/commercial" element={<Commercial />} />
                 </Routes>
             </div>
     </Router>

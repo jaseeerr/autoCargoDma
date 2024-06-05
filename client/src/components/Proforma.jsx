@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import ReactPrint from "react-to-print";
 
-function Commercial() {
+function Proforma() {
   const ref = useRef();
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date");
   const [invoiceDate2, setInvoiceDate2] = useState("DMA/42/23-24");
@@ -747,4 +747,4 @@ function Commercial() {
   );
 }
 
-export default Commercial;
+export default Proforma;
