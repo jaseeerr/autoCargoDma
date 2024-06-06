@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { SERVER_URL } from '../../urls/urls';
 import toast from "react-hot-toast"
-function ViewCommercial() {
+function ViewProforma() {
     
 
       const [data,setData] = useState([
@@ -63,4 +63,4 @@ function ViewCommercial() {
   )
 }
 
-export default ViewCommercial
+export default ViewProforma

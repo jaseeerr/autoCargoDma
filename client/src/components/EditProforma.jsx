@@ -1,8 +1,12 @@
 import React, { useRef, useState } from "react";
 import ReactPrint from "react-to-print";
-
-function Commercial() {
+import axios from 'axios'
+import { SERVER_URL } from "../../urls/urls";
+import toast from 'react-hot-toast'
+import { useParams } from "react-router-dom";
+function EditProforma() {
   const ref = useRef();
+  const {id} = useParams()
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date");
   const [invoiceDate2, setInvoiceDate2] = useState("DMA/42/23-24");
   const [invoiceDate3, setInvoiceDate3] = useState("Dtd 19.03.2024");
@@ -58,13 +62,10 @@ function Commercial() {
   const [total4, setTotal4] = useState("");
   const [total5, setTotal5] = useState("");
 
-
   const [total, setTotal] = useState("106,358.4");
   const [words, setWords] = useState("one Hundred Six Thousand, Three Hundred Fifty Eight & 40/100");
 
   const [product,setProduct] = useState('UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023')
-
-  const [acid,setAcid] = useState('1002405502024030052')
 
 
   const newProforma = async()=>{
@@ -114,11 +115,10 @@ function Commercial() {
       total5,
       total,
       words,
-      product,
-      acid
+      product
     }
     toast.dismiss()
-    const res = await axios.post(`${SERVER_URL}/newCommercial`,{data})
+    const res = await axios.post(`${SERVER_URL}/newProforma`,{data})
     if(res.data.success)
       {
         toast.success("Saved")
@@ -131,6 +131,75 @@ function Commercial() {
 
       }
   }
+
+  const getData = async()=>{
+    const res = await axios.get(`${SERVER_URL}/getProforma/${id}`)
+    if(res.data.success)
+      {
+        const data = res.data.data;
+
+        setInvoiceDate1(data.invoiceDate1);
+        setInvoiceDate2(data.invoiceDate2);
+        setInvoiceDate3(data.invoiceDate3);
+        setInvoiceDate4(data.invoiceDate4);
+
+        setConsignee1(data.consignee1);
+        setConsignee2(data.consignee2);
+        setConsignee3(data.consignee3);
+        setConsignee4(data.consignee4);
+        setConsignee5(data.consignee5);
+        setConsignee6(data.consignee6);
+
+        setCoo(data.coo);
+        setCofd(data.cofd);
+
+        setMarks1(data.marks1);
+        setMarks2(data.marks2);
+        setMarks3(data.marks3);
+        setMarks4(data.marks4);
+        setMarks5(data.marks5);
+
+        setNo1(data.no1);
+        setNo2(data.no2);
+        setNo3(data.no3);
+        setNo4(data.no4);
+        setNo5(data.no5);
+
+        setDesc1(data.desc1);
+        setDesc2(data.desc2);
+        setDesc3(data.desc3);
+        setDesc4(data.desc4);
+        setDesc5(data.desc5);
+
+        setQty1(data.qty1);
+        setQty2(data.qty2);
+        setQty3(data.qty3);
+        setQty4(data.qty4);
+        setQty5(data.qty5);
+
+        setPrice1(data.price1);
+        setPrice2(data.price2);
+        setPrice3(data.price3);
+        setPrice4(data.price4);
+        setPrice5(data.price5);
+
+        setTotal1(data.total1);
+        setTotal2(data.total2);
+        setTotal3(data.total3);
+        setTotal4(data.total4);
+        setTotal5(data.total5);
+
+        setTotal(data.total);
+        setWords(data.words);
+        setProduct(data.product);
+              
+      }
+      else
+      {
+        toast.error("UNKNOWN ERROR")
+      }
+  }
+
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">
@@ -189,53 +258,36 @@ function Commercial() {
       </div>
 
       <div className="p-10 mt-10 border-2 border-black">
-
-      <h2 className="text-center font-bold mb-2 mt-2 underline">
-          Acid Number
+        <h2 className="text-center font-bold mb-4 underline">
+          CONSIGNEE column
         </h2>
         <span className="flex justify-center ">
           <input
             type="text"
-            value={acid}
-            onChange={(e) =>setAcid(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3 w-1/6"
-            placeholder="line 2"
-          />
-         
-         
-        </span>
-
-
-        <h2 className="text-center font-bold mb-4 underline">
-          CONSIGNEE column
-        </h2>
-        <span className="flex justify-center flex-wrap">
-          <input
-            type="text"
             value={consignee1}
             onChange={(e) => setConsignee1(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3 w-1/6"
+            className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee2}
             onChange={(e) => setConsignee2(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3 w-1/4"
+            className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee3}
             onChange={(e) => setConsignee3(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3 w-1/6"
+            className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
           <input
             type="text"
             value={consignee4}
             onChange={(e) => setConsignee4(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3 w-1/6"
+            className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
@@ -477,9 +529,16 @@ function Commercial() {
             type="text"
             value={words}
             onChange={(e) =>setWords(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
+        
+       
+         
+        </span>
+        <span className="flex justify-center mt-3">
+         
+        
           <input
             type="text"
             value={total}
@@ -585,14 +644,9 @@ function Commercial() {
 
         <div className="flex justify-between w-full">
           <div className="border-2 border-t-0 border-r-0 border-l-4 border-black w-full">
-            <span className="r">
-              <p className="my-5 font-semibold">
-              ACID: 1002405502024030052 <br />
- Egyptian Importer Tax ID: 100240550 <br />
-Foreign Exporter Registration Type: Company Registration Number <br />
-Foreign Exporter ID: 1180637 <br />
-Foreign Exporter Country: UNITED ARAB EMIRATES <br />
-Foreign Exporter Country Code: AE
+            <span className="flex justify-center">
+              <p className="my-5">
+                {product}
               </p>
             </span>
           </div>
@@ -824,7 +878,7 @@ Foreign Exporter Country Code: AE
       <ReactPrint
         trigger={() => (
           <button
-            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+            className="my-3 hidden px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
             id="btn"
           >
             Download PDF
@@ -833,8 +887,16 @@ Foreign Exporter Country Code: AE
         content={() => ref.current}
         documentTitle={`FILE`}
       />
+      <span className="flex justify-center mb-10">
+      <button
+            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+           onClick={newProforma}
+          >
+            Save Invoice
+          </button>
+      </span>
     </>
   );
 }
 
-export default Commercial;
+export default EditProforma;

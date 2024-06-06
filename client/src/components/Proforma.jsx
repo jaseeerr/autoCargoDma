@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import ReactPrint from "react-to-print";
-
+import axios from 'axios'
+import { SERVER_URL } from "../../urls/urls";
+import toast from 'react-hot-toast'
 function Proforma() {
   const ref = useRef();
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date");
@@ -62,6 +64,71 @@ function Proforma() {
   const [words, setWords] = useState("one Hundred Six Thousand, Three Hundred Fifty Eight & 40/100");
 
   const [product,setProduct] = useState('UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023')
+
+
+  const newProforma = async()=>{
+    toast.loading("Saving Proforma Invoice")
+    const data ={
+      invoiceDate1,
+      invoiceDate2,
+      invoiceDate3,
+      invoiceDate4,
+      consignee1,
+      consignee2,
+      consignee3,
+      consignee4,
+      consignee5,
+      consignee6,
+      coo,
+      cofd,
+      marks1,
+      marks2,
+      marks3,
+      marks4,
+      marks5,
+      no1,
+      no2,
+      no3,
+      no4,
+      no5,
+      desc1,
+      desc2,
+      desc3,
+      desc4,
+      desc5,
+      qty1,
+      qty2,
+      qty3,
+      qty4,
+      qty5,
+      price1,
+      price2,
+      price3,
+      price4,
+      price5,
+      total1,
+      total2,
+      total3,
+      total4,
+      total5,
+      total,
+      words,
+      product
+    }
+    toast.dismiss()
+    const res = await axios.post(`${SERVER_URL}/newProforma`,{data})
+    if(res.data.success)
+      {
+        toast.success("Saved")
+        document.getElementById('btn').click()
+
+      }
+      else
+      {
+        toast.error("Error")
+
+      }
+  }
 
   return (
     <>
@@ -392,9 +459,16 @@ function Proforma() {
             type="text"
             value={words}
             onChange={(e) =>setWords(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
+        
+       
+         
+        </span>
+        <span className="flex justify-center mt-3">
+         
+        
           <input
             type="text"
             value={total}
@@ -734,7 +808,7 @@ function Proforma() {
       <ReactPrint
         trigger={() => (
           <button
-            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+            className="my-3 hidden px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
             id="btn"
           >
             Download PDF
@@ -743,6 +817,14 @@ function Proforma() {
         content={() => ref.current}
         documentTitle={`FILE`}
       />
+      <span className="flex justify-center mb-10">
+      <button
+            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+           onClick={newProforma}
+          >
+            Save Invoice
+          </button>
+      </span>
     </>
   );
 }

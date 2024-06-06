@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Commercial from './components/Commercial';
-import Invoices from './components/Invoices';
-import ViewCommercial from './components/ViewCommercial';
+
 import Navbar from './components/Header';
 import Proforma from './components/Proforma';
+import ViewProforma from './components/ViewProforma';
+import EditProforma from './components/EditProforma';
+import ViewCommercial from './components/ViewCommercial';
 function App() {
     const [data, setData] = useState([]);
 
@@ -15,10 +17,12 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Commercial />} />
-                    <Route path="/invoices" element={<Invoices />} />
-                    <Route path="/invoice/:id" element={<ViewCommercial />} />
+                   
                     <Route path="/proforma" element={<Proforma />} />
                     <Route path="/commercial" element={<Commercial />} />
+                    <Route path="/viewProforma" element={<ViewProforma />} />
+                    <Route path="/editProforma/:id" element={<EditProforma />} />
+                    <Route path="/viewCommercial" element={<ViewCommercial />} />
                 </Routes>
             </div>
     </Router>
