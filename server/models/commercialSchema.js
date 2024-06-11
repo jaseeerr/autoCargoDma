@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const commercialSchema = new Schema({
+    type:{
+        type:String,
+        default:"COMMERCIAL INVOICE A"
+    },
     invoiceDate1: String,
     invoiceDate2: String,
     invoiceDate3: String,

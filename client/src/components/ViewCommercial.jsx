@@ -18,7 +18,7 @@ function ViewCommercial() {
             {
                 toast.success("Data Fetched")
 
-                setData(res.data.data)
+                setData(res.data.data.reverse())
                 setTimeout(()=>{
                      toast.dismiss()
                 },600)
@@ -37,7 +37,7 @@ function ViewCommercial() {
           <thead>
             <tr>
               <th className="px-4 py-2 border-b-2 border-gray-300 text-left">Date</th>
-              <th className="px-4 py-2 border-b-2 border-gray-300 text-left">Invoice</th>
+              <th className="px-4 py-2 border-b-2 border-gray-300 text-left">Type</th>
               <th className="px-4 py-2 border-b-2 border-gray-300 text-left">Acid</th>
               <th className="px-4 py-2 border-b-2 border-gray-300 text-left">CONSIGNEE</th>
               <th className="px-4 py-2 border-b-2 border-gray-300 text-left">Total Amount</th>
@@ -50,7 +50,7 @@ function ViewCommercial() {
             {data.map((item, index) => (
               <tr key={index} className="hover:bg-gray-100">
                 <td className="px-4 py-2 border-b border-gray-300">{item.createdAt.substring(0,10)}</td>
-                <td className="px-4 py-2 border-b border-gray-300">{item.invoiceDate2}</td>
+                <td className="px-4 py-2 border-b border-gray-300">{item.type?.substring(11)}</td>
                 <td className="px-4 py-2 border-b border-gray-300">{item.acid}</td>
                 <td className="px-4 py-2 border-b border-gray-300">{item.consignee1}</td>
                 <td className="px-4 py-2 border-b border-gray-300">{item.total}</td>

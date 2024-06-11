@@ -124,10 +124,11 @@ router.get('/getProforma/:id', async function(req, res, next) {
 router.get('/getCommercial', async function(req, res, next) {
   try {
     const data = await Commercial.find({})
-    let temp = data.map(({ _id, createdAt, consignee1, total,invoiceDate2,acid, product }) => ({
+    let temp = data.map(({ _id,type, createdAt, consignee1, total,invoiceDate2,acid, product }) => ({
       _id,
       createdAt,
       consignee1,
+      type,
       total,
       product,
       acid,

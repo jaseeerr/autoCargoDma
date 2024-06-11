@@ -6,6 +6,8 @@ import { SERVER_URL } from "../../urls/urls";
 
 function Commercial() {
   const ref = useRef();
+
+  const [type,setType] = useState("COMMERCIAL INVOICE A")
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date");
   const [invoiceDate2, setInvoiceDate2] = useState("DMA/42/23-24");
   const [invoiceDate3, setInvoiceDate3] = useState("Dtd 19.03.2024");
@@ -114,6 +116,7 @@ function Commercial() {
   const newCommercial = async()=>{
     toast.loading("Saving Commercial Invoice")
     const data ={
+      type,
       invoiceDate1,
       invoiceDate2,
       invoiceDate3,
@@ -200,6 +203,18 @@ function Commercial() {
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">
+      <h2 className="text-center font-bold mb-4 underline">
+          INVOICE TYPE
+        </h2>
+        <span className="flex justify-center ">
+          <input
+            type="text"
+            value={type}
+            onChange={(e) => setType(e.target.value.toUpperCase())}
+            className="border border-black p-1 rounded-md ml-3"
+            placeholder="line 2"
+          />
+        </span>
         <h2 className="text-center font-bold mb-4 underline">
           Invoice Date column
         </h2>
@@ -626,7 +641,7 @@ function Commercial() {
 
         <div className="flex justify-center mt-5 w-full">
           <span className="border-2 border-black w-full">
-            <p className="text-center font-bold">COMMERCIAL INVOICE</p>
+            <p className="text-center font-bold">{type}</p>
           </span>
         </div>
 
