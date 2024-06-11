@@ -1,10 +1,10 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPrint from "react-to-print";
 import axios from 'axios'
 import { SERVER_URL } from "../../urls/urls";
 import toast from 'react-hot-toast'
 import { useParams } from "react-router-dom";
-function EditProforma() {
+function EditCommercial() {
   const ref = useRef();
   const {id} = useParams()
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date");
@@ -62,10 +62,13 @@ function EditProforma() {
   const [total4, setTotal4] = useState("");
   const [total5, setTotal5] = useState("");
 
+
   const [total, setTotal] = useState("106,358.4");
   const [words, setWords] = useState("one Hundred Six Thousand, Three Hundred Fifty Eight & 40/100");
 
   const [product,setProduct] = useState('UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023')
+
+  const [acid,setAcid] = useState('1002405502024030052')
 
   function numberToWords(amount) {
     const singleDigits = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
@@ -109,8 +112,8 @@ function EditProforma() {
     return words.replace(/\s+/g, " ");
 }
 
-  const updateProforma = async()=>{
-    toast.loading("Update Proforma Invoice")
+  const updateCommercial = async()=>{
+    toast.loading("Updating Commerical Invoice")
     const data ={
       invoiceDate1,
       invoiceDate2,
@@ -156,10 +159,11 @@ function EditProforma() {
       total5,
       total,
       words,
-      product
+      product,
+      acid
     }
     toast.dismiss()
-    const res = await axios.post(`${SERVER_URL}/updateProforma/${id}`,{data})
+    const res = await axios.post(`${SERVER_URL}/updateCommercial/${id}`,{data})
     if(res.data.success)
       {
         toast.success("Saved")
@@ -175,10 +179,12 @@ function EditProforma() {
 
   
   const getData = async()=>{
-    const res = await axios.get(`${SERVER_URL}/getProforma/${id}`)
+    const res = await axios.get(`${SERVER_URL}/getCommercial/${id}`)
     if(res.data.success)
       {
         const data = res.data.data;
+
+        setAcid(data.acid)
 
         setInvoiceDate1(data.invoiceDate1);
         setInvoiceDate2(data.invoiceDate2);
@@ -245,6 +251,7 @@ function EditProforma() {
   useEffect(()=>{
     getData()
   },[])
+
 
 
   const handleTotalChange = (qty, price, setTotal) => {
@@ -324,36 +331,53 @@ function EditProforma() {
       </div>
 
       <div className="p-10 mt-10 border-2 border-black">
-        <h2 className="text-center font-bold mb-4 underline">
-          CONSIGNEE column
+
+      <h2 className="text-center font-bold mb-2 mt-2 underline">
+          Acid Number
         </h2>
         <span className="flex justify-center ">
           <input
             type="text"
+            value={acid}
+            onChange={(e) =>setAcid(e.target.value.trim())}
+            className="border border-black p-1 rounded-md ml-3 w-1/6"
+            placeholder="line 2"
+          />
+         
+         
+        </span>
+
+
+        <h2 className="text-center font-bold mb-4 underline">
+          CONSIGNEE column
+        </h2>
+        <span className="flex justify-center flex-wrap">
+          <input
+            type="text"
             value={consignee1}
             onChange={(e) => setConsignee1(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee2}
             onChange={(e) => setConsignee2(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/4"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee3}
             onChange={(e) => setConsignee3(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 4"
           />
           <input
             type="text"
             value={consignee4}
             onChange={(e) => setConsignee4(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
           <input
@@ -631,13 +655,6 @@ function EditProforma() {
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
-        
-       
-         
-        </span>
-        <span className="flex justify-center mt-3">
-         
-        
           <input
             type="text"
             value={total}
@@ -685,7 +702,7 @@ function EditProforma() {
 
         <div className="flex justify-center mt-5 w-full">
           <span className="border-2 border-black w-full">
-            <p className="text-center font-bold">PROFORMA INVOICE</p>
+            <p className="text-center font-bold">COMMERCIAL INVOICE</p>
           </span>
         </div>
 
@@ -729,23 +746,28 @@ function EditProforma() {
               <p className="text-center mt-3 font-semibold">
                 Country of Origin
               </p>
-              <p className="text-center font-semibold">India</p>
+              <p className="text-center font-semibold">{coo}</p>
             </div>
             <div className="border-2 border-black mt-10 w-1/2">
               <hr className="border-2 border-black" />
               <p className="text-center text-sm mt-3 font-semibold">
                 Country of final destination
               </p>
-              <p className="text-center font-semibold">Egypt</p>
+              <p className="text-center font-semibold">{cofd}</p>
             </div>
           </div>
         </div>
 
         <div className="flex justify-between w-full">
           <div className="border-2 border-t-0 border-r-0 border-l-4 border-black w-full">
-            <span className="flex justify-center">
-              <p className="my-5">
-                {product}
+            <span className="r">
+              <p className="my-5 font-semibold ml-2">
+              ACID: {acid} <br />
+ Egyptian Importer Tax ID: 100240550 <br />
+Foreign Exporter Registration Type: Company Registration Number <br />
+Foreign Exporter ID: 1180637 <br />
+Foreign Exporter Country: UNITED ARAB EMIRATES <br />
+Foreign Exporter Country Code: AE
               </p>
             </span>
           </div>
@@ -976,6 +998,7 @@ function EditProforma() {
         </center>
       </div>
 
+     
       <ReactPrint
         trigger={() => (
           <button
@@ -991,7 +1014,7 @@ function EditProforma() {
       <span className="flex justify-center mb-10">
       <button
             className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
-           onClick={updateProforma}
+           onClick={updateCommercial}
           >
             Update Invoice
           </button>
@@ -1000,4 +1023,4 @@ function EditProforma() {
   );
 }
 
-export default EditProforma;
+export default EditCommercial;

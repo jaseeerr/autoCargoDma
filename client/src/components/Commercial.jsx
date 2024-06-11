@@ -1,5 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPrint from "react-to-print";
+import toast from 'react-hot-toast'
+import axios from 'axios'
+import { SERVER_URL } from "../../urls/urls";
 
 function Commercial() {
   const ref = useRef();
@@ -40,10 +43,10 @@ function Commercial() {
   const [desc4, setDesc4] = useState("");
   const [desc5, setDesc5] = useState("");
 
-  const [qty1, setQty1] = useState("Net WT In KGS");
-  const [qty2, setQty2] = useState("10652.40");
-  const [qty3, setQty3] = useState("11481.90");
-  const [qty4, setQty4] = useState("22181.70");
+  const [qty1, setQty1] = useState("10652.40");
+  const [qty2, setQty2] = useState("11481.90");
+  const [qty3, setQty3] = useState("22181.70");
+  const [qty4, setQty4] = useState("");
   const [qty5, setQty5] = useState("");
 
   const [price1, setPrice1] = useState("2.40");
@@ -66,9 +69,50 @@ function Commercial() {
 
   const [acid,setAcid] = useState('1002405502024030052')
 
+  function numberToWords(amount) {
+    const singleDigits = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+    const twoDigits = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+    const tensMultiple = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+    const thousands = ["", "Thousand", "Million", "Billion"];
 
-  const newProforma = async()=>{
-    toast.loading("Saving Proforma Invoice")
+    if (amount === "0") return "Zero";
+
+    let [integerPart, decimalPart] = amount.toString().split(".");
+    integerPart = integerPart.replace(/,/g, '');
+    let words = "";
+
+    function getWords(num) {
+        if (num.length === 0) return "";
+        if (num.length === 1) return singleDigits[parseInt(num)];
+        if (num.length === 2) {
+            if (num[0] === '1') {
+                return twoDigits[parseInt(num[1])];
+            } else {
+                return tensMultiple[parseInt(num[0])] + (num[1] !== '0' ? " " + singleDigits[parseInt(num[1])] : "");
+            }
+        }
+        if (num.length === 3) {
+            return singleDigits[parseInt(num[0])] + " Hundred " + getWords(num.slice(1));
+        }
+        let length = num.length;
+        let group = Math.floor((length - 1) / 3);
+        let groupValue = num.slice(0, length - group * 3);
+        return getWords(groupValue) + " " + thousands[group] + " " + getWords(num.slice(length - group * 3));
+    }
+
+    words = getWords(integerPart).trim();
+
+    if (decimalPart) {
+        words += " & " + decimalPart + "/100";
+    } else {
+        words += " & 00/100";
+    }
+
+    return words.replace(/\s+/g, " ");
+}
+
+  const newCommercial = async()=>{
+    toast.loading("Saving Commercial Invoice")
     const data ={
       invoiceDate1,
       invoiceDate2,
@@ -131,6 +175,28 @@ function Commercial() {
 
       }
   }
+
+
+
+  const handleTotalChange = (qty, price, setTotal) => {
+    if (!isNaN(qty) && !isNaN(price)) {
+      setTotal((parseFloat(qty) * parseFloat(price)).toFixed(2));
+    }
+  };
+
+  useEffect(() => {
+    const totals = [total1, total2, total3, total4, total5].map(total =>
+      parseFloat(total.replace(/,/g, '')) || 0
+    );
+    const sum = totals.reduce((acc, curr) => acc + curr, 0);
+    setTotal(sum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  }, [total1, total2, total3, total4, total5]);
+
+  useEffect(()=>{
+    const amount = total
+    setWords(numberToWords(amount))
+  },[total])
+
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">
@@ -281,10 +347,19 @@ function Commercial() {
                 <input onChange={(e) => setDesc1(e.target.value)} value={desc1} type="text" />
               </td>
               <td className="p-1 border border-black">
-                <input onChange={(e) => setQty1(e.target.value)} value={qty1} type="text" />
+                <input  onChange={(e) => {
+                      setQty1(e.target.value);
+                      handleTotalChange(e.target.value, price1, setTotal1);
+                    }}
+                     value={qty1} type="text" />
               </td>
               <td className="p-1 border border-black">
-                <input onChange={(e) => setPrice1(e.target.value)} value={price1} type="text" />
+                <input 
+                 onChange={(e) => {
+                  setPrice1(e.target.value);
+                  handleTotalChange(qty1, e.target.value, setTotal1);
+                }}
+                value={price1} type="text" />
               </td>
               <td className="p-1 border border-black">
                 <input onChange={(e) => setTotal1(e.target.value)} value={total1} type="text" />
@@ -314,14 +389,20 @@ function Commercial() {
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setQty2(e.target.value)}
+                  onChange={(e) => {
+                    setQty2(e.target.value);
+                    handleTotalChange(e.target.value, price2, setTotal2);
+                  }}
                   value={qty2}
                   type="text"
                 />
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setPrice2(e.target.value)}
+                  onChange={(e) => {
+                    setPrice2(e.target.value);
+                    handleTotalChange(qty2, e.target.value, setTotal2);
+                  }}
                   value={price2}
                   type="text"
                 />
@@ -358,14 +439,20 @@ function Commercial() {
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setQty3(e.target.value)}
+                 onChange={(e) => {
+                  setQty3(e.target.value);
+                  handleTotalChange(e.target.value, price3, setTotal3);
+                }}
                   value={qty3}
                   type="text"
                 />
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setPrice3(e.target.value)}
+                  onChange={(e) => {
+                    setPrice3(e.target.value);
+                    handleTotalChange(qty3, e.target.value, setTotal3);
+                  }}
                   value={price3}
                   type="text"
                 />
@@ -402,14 +489,20 @@ function Commercial() {
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setQty4(e.target.value)}
+                  onChange={(e) => {
+                    setQty4(e.target.value);
+                    handleTotalChange(e.target.value, price4, setTotal4);
+                  }}
                   value={qty4}
                   type="text"
                 />
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setPrice4(e.target.value)}
+                 onChange={(e) => {
+                  setPrice4(e.target.value);
+                  handleTotalChange(qty4, e.target.value, setTotal4);
+                }}
                   value={price4}
                   type="text"
                 />
@@ -446,14 +539,20 @@ function Commercial() {
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setQty5(e.target.value)}
+                 onChange={(e) => {
+                  setQty5(e.target.value);
+                  handleTotalChange(e.target.value, price5, setTotal5);
+                }}
                   value={qty5}
                   type="text"
                 />
               </td>
               <td className="p-1 border border-black">
                 <input
-                  onChange={(e) => setPrice5(e.target.value)}
+                  onChange={(e) => {
+                    setPrice5(e.target.value);
+                    handleTotalChange(qty5, e.target.value, setTotal5);
+                  }}
                   value={price5}
                   type="text"
                 />
@@ -477,7 +576,7 @@ function Commercial() {
             type="text"
             value={words}
             onChange={(e) =>setWords(e.target.value.trim())}
-            className="border border-black p-1 rounded-md ml-3"
+            className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
           <input
@@ -527,7 +626,7 @@ function Commercial() {
 
         <div className="flex justify-center mt-5 w-full">
           <span className="border-2 border-black w-full">
-            <p className="text-center font-bold">PROFORMA INVOICE</p>
+            <p className="text-center font-bold">COMMERCIAL INVOICE</p>
           </span>
         </div>
 
@@ -571,14 +670,14 @@ function Commercial() {
               <p className="text-center mt-3 font-semibold">
                 Country of Origin
               </p>
-              <p className="text-center font-semibold">Malawi</p>
+              <p className="text-center font-semibold">{coo}</p>
             </div>
             <div className="border-2 border-black mt-10 w-1/2">
               <hr className="border-2 border-black" />
               <p className="text-center text-sm mt-3 font-semibold">
                 Country of final destination
               </p>
-              <p className="text-center font-semibold">Egypt</p>
+              <p className="text-center font-semibold">{cofd}</p>
             </div>
           </div>
         </div>
@@ -586,7 +685,7 @@ function Commercial() {
         <div className="flex justify-between w-full">
           <div className="border-2 border-t-0 border-r-0 border-l-4 border-black w-full">
             <span className="r">
-              <p className="my-5 font-semibold">
+              <p className="my-5  ml-2 font-semibold">
               ACID: 1002405502024030052 <br />
  Egyptian Importer Tax ID: 100240550 <br />
 Foreign Exporter Registration Type: Company Registration Number <br />
@@ -674,6 +773,8 @@ Foreign Exporter Country Code: AE
                   {desc5}
                 </td>
                 <td className="px-4 py-2 border-2 border-black">
+                Net WT In KGS
+                <br />
                   {qty1}
                   {qty2 && <br />}
                   {qty2}
@@ -824,7 +925,7 @@ Foreign Exporter Country Code: AE
       <ReactPrint
         trigger={() => (
           <button
-            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+            className="my-3 hidden px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
             id="btn"
           >
             Download PDF
@@ -833,6 +934,14 @@ Foreign Exporter Country Code: AE
         content={() => ref.current}
         documentTitle={`FILE`}
       />
+      <span className="flex justify-center mb-10">
+      <button
+            className="my-3 px-5 py-1 border rounded-md bg-green-500 hover:bg-green-600 cursor-pointer text-white"
+           onClick={newCommercial}
+          >
+            Save Invoice
+          </button>
+      </span>
     </>
   );
 }

@@ -8,6 +8,7 @@ import Proforma from './components/Proforma';
 import ViewProforma from './components/ViewProforma';
 import EditProforma from './components/EditProforma';
 import ViewCommercial from './components/ViewCommercial';
+import EditCommercial from './components/EditCommercial';
 function App() {
     const [data, setData] = useState([]);
 
@@ -23,6 +24,8 @@ function App() {
                     <Route path="/viewProforma" element={<ViewProforma />} />
                     <Route path="/editProforma/:id" element={<EditProforma />} />
                     <Route path="/viewCommercial" element={<ViewCommercial />} />
+                    <Route path="/editCommerical/:id" element={<EditCommercial />} />
+
                 </Routes>
             </div>
     </Router>
