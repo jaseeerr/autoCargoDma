@@ -701,7 +701,7 @@ function Commercial() {
           <div className="border-2 border-t-0 border-r-0 border-l-4 border-black w-full">
             <span className="r">
               <p className="my-5  ml-2 font-semibold">
-              ACID: 1002405502024030052 <br />
+              ACID: {acid} <br />
  Egyptian Importer Tax ID: 100240550 <br />
 Foreign Exporter Registration Type: Company Registration Number <br />
 Foreign Exporter ID: 1180637 <br />
@@ -776,7 +776,7 @@ Foreign Exporter Country Code: AE
                   {no5 && <br />}
                   {no5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4 text-sm py-2 border-2 border-black">
                   {desc1}
                   {desc2 && <br />}
                   {desc2}
