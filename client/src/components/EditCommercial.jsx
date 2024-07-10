@@ -852,7 +852,7 @@ Foreign Exporter Country Code: AE
                   {no5 && <br />}
                   {no5}
                 </td>
-                <td className="px-4 text-sm py-2 border-2 border-black">
+                <td className="px-4  py-2 border-2 border-black">
                   {desc1}
                   {desc2 && <br />}
                   {desc2}
