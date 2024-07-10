@@ -641,38 +641,27 @@ function Proforma() {
             <span className="border-b-2 border-r-2 border-black px-2">
               <strong>CONSIGNEE</strong>
             </span>
-            <br />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee1} onChange={(e)=>setConsignee1(e.target.value)} />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee2} onChange={(e)=>setConsignee2(e.target.value)} />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee3} onChange={(e)=>setConsignee3(e.target.value)} />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee4} onChange={(e)=>setConsignee4(e.target.value)} />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee5} onChange={(e)=>setConsignee5(e.target.value)} />
-            <input className="ml-3 font-semibold w-1/2" type="text" value={consignee6} onChange={(e)=>setConsignee6(e.target.value)} />
-            {/* <p className="ml-3 font-semibold">{consignee1}</p> */}
-            {/* <p className="ml-3 font-semibold">{consignee2}</p> */}
-            {/* <p className="ml-3 font-semibold">{consignee3}</p> */}
-            {/* <p className="ml-3 font-semibold">{consignee4}</p> */}
-            {/* <p className="ml-3 font-semibold">{consignee5}</p> */}
-            {/* <p className="ml-3 font-semibold">{consignee6}</p> */}
+            <p className="ml-3 font-semibold">{consignee1}</p>
+            <p className="ml-3 font-semibold">{consignee2}</p>
+            <p className="ml-3 font-semibold">{consignee3}</p>
+            <p className="ml-3 font-semibold">{consignee4}</p>
+            <p className="ml-3 font-semibold">{consignee5}</p>
+            <p className="ml-3 font-semibold">{consignee6}</p>
           </div>
           <div className="flex border-b-2 border-l-2 border-r-4 border-black w-96">
             <div className="border-2 border-t-2 border-black mt-10 w-1/2">
               <hr className="border-2 border-black" />
-
               <p className="text-center mt-3 font-semibold">
                 Country of Origin
               </p>
-              <input className="text-center w-36 ml-1 font-semibold" type="text" value={coo} onChange={(e)=>setCoo(e.target.value)} />
-
-              {/* <p className="text-center font-semibold">{coo}</p> */}
+              <p className="text-center font-semibold">{coo}</p>
             </div>
             <div className="border-2 border-black mt-10 w-1/2">
               <hr className="border-2 border-black" />
               <p className="text-center text-sm mt-3 font-semibold">
                 Country of final destination
               </p>
-              <input className="text-center w-36 ml-1 font-semibold" type="text" value={cofd} onChange={(e)=>setCofd(e.target.value)} />
-              {/* <p className="text-center font-semibold">{cofd}</p> */}
+              <p className="text-center font-semibold">{cofd}</p>
             </div>
           </div>
         </div>
@@ -680,11 +669,9 @@ function Proforma() {
         <div className="flex justify-between w-full">
           <div className="border-2 border-t-0 border-r-0 border-l-4 border-black w-full">
             <span className="flex justify-center">
-            <input className="ml-32 my-5 w-1/2" type="text" value={product} onChange={(e)=>setProduct(e.target.value)} />
-
-              {/* <p className="my-5">
+              <p className="my-5">
                 {product}
-              </p> */}
+              </p>
             </span>
           </div>
           <div className="flex justify-end border-b-2 border-r-4 border-black w-96">
