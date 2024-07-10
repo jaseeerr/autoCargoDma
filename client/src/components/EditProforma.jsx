@@ -729,14 +729,14 @@ function EditProforma() {
               <p className="text-center mt-3 font-semibold">
                 Country of Origin
               </p>
-              <p className="text-center font-semibold">India</p>
+              <p className="text-center font-semibold">{coo}</p>
             </div>
             <div className="border-2 border-black mt-10 w-1/2">
               <hr className="border-2 border-black" />
               <p className="text-center text-sm mt-3 font-semibold">
                 Country of final destination
               </p>
-              <p className="text-center font-semibold">Egypt</p>
+              <p className="text-center font-semibold">{cofd}</p>
             </div>
           </div>
         </div>
