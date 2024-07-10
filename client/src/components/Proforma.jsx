@@ -752,8 +752,7 @@ function Proforma() {
                   {desc5}
                 </td>
                 <td className="px-4 py-2 border-2 border-black">
-                Net WT In KGS
-                <br />
+               
                   {qty1}
                   {qty2 && <br />}
                   {qty2}
