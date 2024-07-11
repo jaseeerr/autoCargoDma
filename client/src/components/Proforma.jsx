@@ -65,6 +65,11 @@ function Proforma() {
 
   const [product,setProduct] = useState('UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023')
 
+
+ 
+
+
+
   function numberToWords(amount) {
     const singleDigits = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
     const twoDigits = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
@@ -201,28 +206,28 @@ function Proforma() {
           <input
             type="text"
             value={invoiceDate1}
-            onChange={(e) => setInvoiceDate1(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 1"
           />
           <input
             type="text"
             value={invoiceDate2}
-            onChange={(e) => setInvoiceDate2(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={invoiceDate3}
-            onChange={(e) => setInvoiceDate3(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={invoiceDate4}
-            onChange={(e) => setInvoiceDate4(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -234,14 +239,14 @@ function Proforma() {
           <input
             type="text"
             value={coo}
-            onChange={(e) => setCoo(e.target.value.trim())}
+            onChange={(e) => setCoo(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={cofd}
-            onChange={(e) => setCofd(e.target.value.trim())}
+            onChange={(e) => setCofd(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -256,42 +261,42 @@ function Proforma() {
           <input
             type="text"
             value={consignee1}
-            onChange={(e) => setConsignee1(e.target.value.trim())}
+            onChange={(e) => setConsignee1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee2}
-            onChange={(e) => setConsignee2(e.target.value.trim())}
+            onChange={(e) => setConsignee2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee3}
-            onChange={(e) => setConsignee3(e.target.value.trim())}
+            onChange={(e) => setConsignee3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
           <input
             type="text"
             value={consignee4}
-            onChange={(e) => setConsignee4(e.target.value.trim())}
+            onChange={(e) => setConsignee4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee5}
-            onChange={(e) => setConsignee5(e.target.value.trim())}
+            onChange={(e) => setConsignee5(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee6}
-            onChange={(e) => setConsignee6(e.target.value.trim())}
+            onChange={(e) => setConsignee6(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -552,7 +557,7 @@ function Proforma() {
           <input
             type="text"
             value={words}
-            onChange={(e) =>setWords(e.target.value.trim())}
+            onChange={(e) =>setWords(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
@@ -566,7 +571,7 @@ function Proforma() {
           <input
             type="text"
             value={total}
-            onChange={(e) => setTotal(e.target.value.trim())}
+            onChange={(e) => setTotal(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -580,7 +585,7 @@ function Proforma() {
           <input
             type="text"
             value={product}
-            onChange={(e) =>setProduct(e.target.value.trim())}
+            onChange={(e) =>setProduct(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />

@@ -200,6 +200,117 @@ function Commercial() {
     setWords(numberToWords(amount))
   },[total])
 
+  useEffect(() => {
+    const preset = localStorage.getItem('preset');
+    if (preset == "1") {
+      setConsignee1(localStorage.getItem('consignee1') || "");
+      setConsignee2(localStorage.getItem('consignee2') || "");
+      setConsignee3(localStorage.getItem('consignee3') || "");
+      setConsignee4(localStorage.getItem('consignee4') || "");
+      setConsignee5(localStorage.getItem('consignee5') || "");
+      setConsignee6(localStorage.getItem('consignee6') || "");
+
+      setCoo(localStorage.getItem('coo') || "");
+      setCofd(localStorage.getItem('cofd') || "");
+
+      setMarks1(localStorage.getItem('marks1') || "");
+      setMarks2(localStorage.getItem('marks2') || "");
+      setMarks3(localStorage.getItem('marks3') || "");
+      setMarks4(localStorage.getItem('marks4') || "");
+      setMarks5(localStorage.getItem('marks5') || "");
+
+      setNo1(localStorage.getItem('no1') || "");
+      setNo2(localStorage.getItem('no2') || "");
+      setNo3(localStorage.getItem('no3') || "");
+      setNo4(localStorage.getItem('no4') || "");
+      setNo5(localStorage.getItem('no5') || "");
+
+      setDesc1(localStorage.getItem('desc1') || "");
+      setDesc2(localStorage.getItem('desc2') || "");
+      setDesc3(localStorage.getItem('desc3') || "");
+      setDesc4(localStorage.getItem('desc4') || "");
+      setDesc5(localStorage.getItem('desc5') || "");
+
+      setQty1(localStorage.getItem('qty1') || "");
+      setQty2(localStorage.getItem('qty2') || "");
+      setQty3(localStorage.getItem('qty3') || "");
+      setQty4(localStorage.getItem('qty4') || "");
+      setQty5(localStorage.getItem('qty5') || "");
+
+      setPrice1(localStorage.getItem('price1') || "");
+      setPrice2(localStorage.getItem('price2') || "");
+      setPrice3(localStorage.getItem('price3') || "");
+      setPrice4(localStorage.getItem('price4') || "");
+      setPrice5(localStorage.getItem('price5') || "");
+
+      setTotal1(localStorage.getItem('total1') || "");
+      setTotal2(localStorage.getItem('total2') || "");
+      setTotal3(localStorage.getItem('total3') || "");
+      setTotal4(localStorage.getItem('total4') || "");
+      setTotal5(localStorage.getItem('total5') || "");
+
+      setTotal(localStorage.getItem('total') || "");
+      setWords(localStorage.getItem('words') || "");
+
+      setProduct(localStorage.getItem('product') || "");
+
+      // localStorage.removeItem('consignee1');
+      // localStorage.removeItem('consignee2');
+      // localStorage.removeItem('consignee3');
+      // localStorage.removeItem('consignee4');
+      // localStorage.removeItem('consignee5');
+      // localStorage.removeItem('consignee6');
+  
+      // localStorage.removeItem('coo');
+      // localStorage.removeItem('cofd');
+  
+      // localStorage.removeItem('marks1');
+      // localStorage.removeItem('marks2');
+      // localStorage.removeItem('marks3');
+      // localStorage.removeItem('marks4');
+      // localStorage.removeItem('marks5');
+  
+      // localStorage.removeItem('no1');
+      // localStorage.removeItem('no2');
+      // localStorage.removeItem('no3');
+      // localStorage.removeItem('no4');
+      // localStorage.removeItem('no5');
+  
+      // localStorage.removeItem('desc1');
+      // localStorage.removeItem('desc2');
+      // localStorage.removeItem('desc3');
+      // localStorage.removeItem('desc4');
+      // localStorage.removeItem('desc5');
+  
+      // localStorage.removeItem('qty1');
+      // localStorage.removeItem('qty2');
+      // localStorage.removeItem('qty3');
+      // localStorage.removeItem('qty4');
+      // localStorage.removeItem('qty5');
+  
+      // localStorage.removeItem('price1');
+      // localStorage.removeItem('price2');
+      // localStorage.removeItem('price3');
+      // localStorage.removeItem('price4');
+      // localStorage.removeItem('price5');
+  
+      // localStorage.removeItem('total1');
+      // localStorage.removeItem('total2');
+      // localStorage.removeItem('total3');
+      // localStorage.removeItem('total4');
+      // localStorage.removeItem('total5');
+  
+      // localStorage.removeItem('total');
+      // localStorage.removeItem('words');
+  
+      // localStorage.removeItem('product');
+  
+      // localStorage.removeItem('preset');
+      
+    }
+  }, []);
+
+
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">
@@ -222,28 +333,28 @@ function Commercial() {
           <input
             type="text"
             value={invoiceDate1}
-            onChange={(e) => setInvoiceDate1(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 1"
           />
           <input
             type="text"
             value={invoiceDate2}
-            onChange={(e) => setInvoiceDate2(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={invoiceDate3}
-            onChange={(e) => setInvoiceDate3(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={invoiceDate4}
-            onChange={(e) => setInvoiceDate4(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -255,14 +366,14 @@ function Commercial() {
           <input
             type="text"
             value={coo}
-            onChange={(e) => setCoo(e.target.value.trim())}
+            onChange={(e) => setCoo(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={cofd}
-            onChange={(e) => setCofd(e.target.value.trim())}
+            onChange={(e) => setCofd(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -278,7 +389,7 @@ function Commercial() {
           <input
             type="text"
             value={acid}
-            onChange={(e) =>setAcid(e.target.value.trim())}
+            onChange={(e) =>setAcid(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
@@ -294,42 +405,42 @@ function Commercial() {
           <input
             type="text"
             value={consignee1}
-            onChange={(e) => setConsignee1(e.target.value.trim())}
+            onChange={(e) => setConsignee1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee2}
-            onChange={(e) => setConsignee2(e.target.value.trim())}
+            onChange={(e) => setConsignee2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/4"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee3}
-            onChange={(e) => setConsignee3(e.target.value.trim())}
+            onChange={(e) => setConsignee3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 4"
           />
           <input
             type="text"
             value={consignee4}
-            onChange={(e) => setConsignee4(e.target.value.trim())}
+            onChange={(e) => setConsignee4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee5}
-            onChange={(e) => setConsignee5(e.target.value.trim())}
+            onChange={(e) => setConsignee5(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee6}
-            onChange={(e) => setConsignee6(e.target.value.trim())}
+            onChange={(e) => setConsignee6(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -590,14 +701,14 @@ function Commercial() {
           <input
             type="text"
             value={words}
-            onChange={(e) =>setWords(e.target.value.trim())}
+            onChange={(e) =>setWords(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={total}
-            onChange={(e) => setTotal(e.target.value.trim())}
+            onChange={(e) => setTotal(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -611,7 +722,7 @@ function Commercial() {
           <input
             type="text"
             value={product}
-            onChange={(e) =>setProduct(e.target.value.trim())}
+            onChange={(e) =>setProduct(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
@@ -754,7 +865,27 @@ Foreign Exporter Country Code: AE
             </thead>
             <tbody>
               <tr>
-                <td className="px-4 py-2 border-2 border-l-4 border-black">
+              <td className="px-4 border-r-2 border-l-4 border-black">
+
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 border-r-2  border-black">
+            {product && product}
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 border-r-4 border-black">
+
+              </td>
+              </tr>
+              <tr>
+                <td className="px-4  border-2 border-l-4 border-t-0 border-black">
                   {marks1}
                   {marks2 && <br />}
                   {marks2}
@@ -765,7 +896,7 @@ Foreign Exporter Country Code: AE
                   {marks5 && <br />}
                   {marks5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4  border-2 border-t-0 border-black">
                   {no1}
                   {no2 && <br />}
                   {no2}
@@ -776,7 +907,8 @@ Foreign Exporter Country Code: AE
                   {no5 && <br />}
                   {no5}
                 </td>
-                <td className="px-4 text-sm py-2 border-2 border-black">
+                <td className="px-4 text-sm  border-2 border-t-0 border-black">
+                 
                   {desc1}
                   {desc2 && <br />}
                   {desc2}
@@ -787,7 +919,7 @@ Foreign Exporter Country Code: AE
                   {desc5 && <br />}
                   {desc5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4  border-2 border-t-0 border-black">
                
                   {qty1}
                   {qty2 && <br />}
@@ -799,7 +931,7 @@ Foreign Exporter Country Code: AE
                   {qty5 && <br />}
                   {qty5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4  border-2 border-t-0 border-black">
                   {price1}
                   {price2 && <br />}
                   {price2}
@@ -810,7 +942,7 @@ Foreign Exporter Country Code: AE
                   {price5 && <br />}
                   {price5}
                 </td>
-                <td className="px-4 py-2 border-2 border-r-4 border-black">
+                <td className="px-4  border-2 border-t-0 border-r-4 border-black">
                   {total1}
                   {total2 && <br />}
                   {total2}

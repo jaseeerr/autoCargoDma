@@ -266,6 +266,62 @@ function EditProforma() {
     setWords(numberToWords(amount))
   },[total])
 
+  const saveToLocalStorage = () => {
+    localStorage.setItem('consignee1', consignee1);
+    localStorage.setItem('consignee2', consignee2);
+    localStorage.setItem('consignee3', consignee3);
+    localStorage.setItem('consignee4', consignee4);
+    localStorage.setItem('consignee5', consignee5);
+    localStorage.setItem('consignee6', consignee6);
+
+    localStorage.setItem('coo', coo);
+    localStorage.setItem('cofd', cofd);
+
+    localStorage.setItem('marks1', marks1);
+    localStorage.setItem('marks2', marks2);
+    localStorage.setItem('marks3', marks3);
+    localStorage.setItem('marks4', marks4);
+    localStorage.setItem('marks5', marks5);
+
+    localStorage.setItem('no1', no1);
+    localStorage.setItem('no2', no2);
+    localStorage.setItem('no3', no3);
+    localStorage.setItem('no4', no4);
+    localStorage.setItem('no5', no5);
+
+    localStorage.setItem('desc1', desc1);
+    localStorage.setItem('desc2', desc2);
+    localStorage.setItem('desc3', desc3);
+    localStorage.setItem('desc4', desc4);
+    localStorage.setItem('desc5', desc5);
+
+    localStorage.setItem('qty1', qty1);
+    localStorage.setItem('qty2', qty2);
+    localStorage.setItem('qty3', qty3);
+    localStorage.setItem('qty4', qty4);
+    localStorage.setItem('qty5', qty5);
+
+    localStorage.setItem('price1', price1);
+    localStorage.setItem('price2', price2);
+    localStorage.setItem('price3', price3);
+    localStorage.setItem('price4', price4);
+    localStorage.setItem('price5', price5);
+
+    localStorage.setItem('total1', total1);
+    localStorage.setItem('total2', total2);
+    localStorage.setItem('total3', total3);
+    localStorage.setItem('total4', total4);
+    localStorage.setItem('total5', total5);
+
+    localStorage.setItem('total', total);
+    localStorage.setItem('words', words);
+
+    localStorage.setItem('product', product);
+
+    localStorage.setItem('preset', 1);
+    location.href = '/'
+  };
+
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">
@@ -276,28 +332,28 @@ function EditProforma() {
           <input
             type="text"
             value={invoiceDate1}
-            onChange={(e) => setInvoiceDate1(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 1"
           />
           <input
             type="text"
             value={invoiceDate2}
-            onChange={(e) => setInvoiceDate2(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={invoiceDate3}
-            onChange={(e) => setInvoiceDate3(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={invoiceDate4}
-            onChange={(e) => setInvoiceDate4(e.target.value.trim())}
+            onChange={(e) => setInvoiceDate4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -309,14 +365,14 @@ function EditProforma() {
           <input
             type="text"
             value={coo}
-            onChange={(e) => setCoo(e.target.value.trim())}
+            onChange={(e) => setCoo(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={cofd}
-            onChange={(e) => setCofd(e.target.value.trim())}
+            onChange={(e) => setCofd(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -331,42 +387,42 @@ function EditProforma() {
           <input
             type="text"
             value={consignee1}
-            onChange={(e) => setConsignee1(e.target.value.trim())}
+            onChange={(e) => setConsignee1(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee2}
-            onChange={(e) => setConsignee2(e.target.value.trim())}
+            onChange={(e) => setConsignee2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee3}
-            onChange={(e) => setConsignee3(e.target.value.trim())}
+            onChange={(e) => setConsignee3(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
           <input
             type="text"
             value={consignee4}
-            onChange={(e) => setConsignee4(e.target.value.trim())}
+            onChange={(e) => setConsignee4(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
           <input
             type="text"
             value={consignee5}
-            onChange={(e) => setConsignee5(e.target.value.trim())}
+            onChange={(e) => setConsignee5(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
           <input
             type="text"
             value={consignee6}
-            onChange={(e) => setConsignee6(e.target.value.trim())}
+            onChange={(e) => setConsignee6(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 4"
           />
@@ -627,7 +683,7 @@ function EditProforma() {
           <input
             type="text"
             value={words}
-            onChange={(e) =>setWords(e.target.value.trim())}
+            onChange={(e) =>setWords(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
@@ -641,7 +697,7 @@ function EditProforma() {
           <input
             type="text"
             value={total}
-            onChange={(e) => setTotal(e.target.value.trim())}
+            onChange={(e) => setTotal(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 3"
           />
@@ -655,7 +711,7 @@ function EditProforma() {
           <input
             type="text"
             value={product}
-            onChange={(e) =>setProduct(e.target.value.trim())}
+            onChange={(e) =>setProduct(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/3"
             placeholder="line 2"
           />
@@ -994,6 +1050,14 @@ function EditProforma() {
           >
             Update Invoice
           </button>
+
+          <button
+            className="my-3 px-5 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white"
+           onClick={saveToLocalStorage}
+          >
+          Get Commercial
+          </button>
+
       </span>
     </>
   );
