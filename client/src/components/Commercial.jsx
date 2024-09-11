@@ -14,13 +14,9 @@ function Commercial() {
   const [invoiceDate4, setInvoiceDate4] = useState("Ship. REF. : MAL24-0224");
 
   const [consignee1, setConsignee1] = useState("EL -WARDA FOR TOBACOO COMPANY");
-  const [consignee2, setConsignee2] = useState(
-    "AHMED FATHI AHMED EL - TALAWI AND PARTNERS"
-  );
+  const [consignee2, setConsignee2] = useState("AHMED FATHI AHMED EL - TALAWI AND PARTNERS");
   const [consignee3, setConsignee3] = useState("AWEL TAREEK SHEBIN EL -KOEM");
-  const [consignee4, setConsignee4] = useState(
-    "QUESINA - MENOFYA , P.O BOX 95"
-  );
+  const [consignee4, setConsignee4] = useState("QUESINA - MENOFYA , P.O BOX 95");
   const [consignee5, setConsignee5] = useState("SHEBIN EL KOEM");
   const [consignee6, setConsignee6] = useState("EGYPT");
 
@@ -871,7 +867,7 @@ Foreign Exporter Country Code: AE
               <td className="px-4 border-r-2  border-black">
 
               </td>
-              <td className="px-4 border-r-2  border-black">
+              <td className="px-4 text-sm border-r-2  border-black">
             {product && product}
               </td>
               <td className="px-4 border-r-2  border-black">
@@ -885,7 +881,7 @@ Foreign Exporter Country Code: AE
               </td>
               </tr>
               <tr>
-                <td className="px-4  border-2 border-l-4 border-t-0 border-black">
+                <td className="px-4 text-sm border-2 border-l-4 border-t-0 border-black">
                   {marks1}
                   {marks2 && <br />}
                   {marks2}
@@ -896,7 +892,7 @@ Foreign Exporter Country Code: AE
                   {marks5 && <br />}
                   {marks5}
                 </td>
-                <td className="px-4  border-2 border-t-0 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                   {no1}
                   {no2 && <br />}
                   {no2}
@@ -919,7 +915,7 @@ Foreign Exporter Country Code: AE
                   {desc5 && <br />}
                   {desc5}
                 </td>
-                <td className="px-4  border-2 border-t-0 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                
                   {qty1}
                   {qty2 && <br />}
@@ -931,7 +927,7 @@ Foreign Exporter Country Code: AE
                   {qty5 && <br />}
                   {qty5}
                 </td>
-                <td className="px-4  border-2 border-t-0 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                   {price1}
                   {price2 && <br />}
                   {price2}
@@ -942,7 +938,7 @@ Foreign Exporter Country Code: AE
                   {price5 && <br />}
                   {price5}
                 </td>
-                <td className="px-4  border-2 border-t-0 border-r-4 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-r-4 border-black">
                   {total1}
                   {total2 && <br />}
                   {total2}

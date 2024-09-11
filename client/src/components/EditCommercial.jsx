@@ -258,8 +258,13 @@ function EditCommercial() {
 
 
   const handleTotalChange = (qty, price, setTotal) => {
+
     if (!isNaN(qty) && !isNaN(price)) {
       setTotal((parseFloat(qty) * parseFloat(price)).toFixed(2));
+    }
+    else
+    {
+      console.log("error")
     }
   };
 
@@ -830,7 +835,27 @@ Foreign Exporter Country Code: AE
             </thead>
             <tbody>
               <tr>
-                <td className="px-4 py-2 border-2 border-l-4 border-black">
+              <td className="px-4 border-r-2 border-l-4 border-black">
+
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 text-sm border-r-2  border-black">
+            {product && product}
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 border-r-2  border-black">
+
+              </td>
+              <td className="px-4 border-r-4 border-black">
+
+              </td>
+              </tr>
+              <tr>
+                <td className="px-4 text-sm border-2 border-l-4 border-t-0 border-black">
                   {marks1}
                   {marks2 && <br />}
                   {marks2}
@@ -841,7 +866,7 @@ Foreign Exporter Country Code: AE
                   {marks5 && <br />}
                   {marks5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                   {no1}
                   {no2 && <br />}
                   {no2}
@@ -852,7 +877,8 @@ Foreign Exporter Country Code: AE
                   {no5 && <br />}
                   {no5}
                 </td>
-                <td className="px-4  py-2 border-2 border-black">
+                <td className="px-4 text-sm  border-2 border-t-0 border-black">
+                 
                   {desc1}
                   {desc2 && <br />}
                   {desc2}
@@ -863,7 +889,7 @@ Foreign Exporter Country Code: AE
                   {desc5 && <br />}
                   {desc5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                
                   {qty1}
                   {qty2 && <br />}
@@ -875,7 +901,7 @@ Foreign Exporter Country Code: AE
                   {qty5 && <br />}
                   {qty5}
                 </td>
-                <td className="px-4 py-2 border-2 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-black">
                   {price1}
                   {price2 && <br />}
                   {price2}
@@ -886,7 +912,7 @@ Foreign Exporter Country Code: AE
                   {price5 && <br />}
                   {price5}
                 </td>
-                <td className="px-4 py-2 border-2 border-r-4 border-black">
+                <td className="px-4 text-sm border-2 border-t-0 border-r-4 border-black">
                   {total1}
                   {total2 && <br />}
                   {total2}
