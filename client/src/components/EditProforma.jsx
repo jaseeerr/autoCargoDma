@@ -266,65 +266,23 @@ function EditProforma() {
     setWords(numberToWords(amount))
   },[total])
 
-  const saveToLocalStorage = () => {
-    localStorage.setItem('consignee1', consignee1);
-    localStorage.setItem('consignee2', consignee2);
-    localStorage.setItem('consignee3', consignee3);
-    localStorage.setItem('consignee4', consignee4);
-    localStorage.setItem('consignee5', consignee5);
-    localStorage.setItem('consignee6', consignee6);
-
-    localStorage.setItem('coo', coo);
-    localStorage.setItem('cofd', cofd);
-
-    localStorage.setItem('marks1', marks1);
-    localStorage.setItem('marks2', marks2);
-    localStorage.setItem('marks3', marks3);
-    localStorage.setItem('marks4', marks4);
-    localStorage.setItem('marks5', marks5);
-
-    localStorage.setItem('no1', no1);
-    localStorage.setItem('no2', no2);
-    localStorage.setItem('no3', no3);
-    localStorage.setItem('no4', no4);
-    localStorage.setItem('no5', no5);
-
-    localStorage.setItem('desc1', desc1);
-    localStorage.setItem('desc2', desc2);
-    localStorage.setItem('desc3', desc3);
-    localStorage.setItem('desc4', desc4);
-    localStorage.setItem('desc5', desc5);
-
-    localStorage.setItem('qty1', qty1);
-    localStorage.setItem('qty2', qty2);
-    localStorage.setItem('qty3', qty3);
-    localStorage.setItem('qty4', qty4);
-    localStorage.setItem('qty5', qty5);
-
-    localStorage.setItem('price1', price1);
-    localStorage.setItem('price2', price2);
-    localStorage.setItem('price3', price3);
-    localStorage.setItem('price4', price4);
-    localStorage.setItem('price5', price5);
-
-    localStorage.setItem('total1', total1);
-    localStorage.setItem('total2', total2);
-    localStorage.setItem('total3', total3);
-    localStorage.setItem('total4', total4);
-    localStorage.setItem('total5', total5);
-
-    localStorage.setItem('total', total);
-    localStorage.setItem('words', words);
-
-    localStorage.setItem('product', product);
-
-    localStorage.setItem('preset', 1);
-    location.href = '/'
-  };
+  
 
   return (
     <>
+    <span className="flex justify-center">
+    <button
+            className="my-3 px-5 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white"
+           onClick={()=>{
+            localStorage.setItem('proformaCopy',id)
+            location.href='/proforma'
+           }}
+          >
+          Copy Proforma
+          </button>
+    </span>
       <div className="p-10 mt-10 border-2 border-black">
+     
         <h2 className="text-center font-bold mb-4 underline">
           Invoice Date column
         </h2>
@@ -339,7 +297,8 @@ function EditProforma() {
           <input
             type="text"
             value={invoiceDate2}
-            onChange={(e) => setInvoiceDate2(e.target.value)}
+            readOnly
+            // onChange={(e) => setInvoiceDate2(e.target.value)}
             className="border border-black p-1 rounded-md ml-3"
             placeholder="line 2"
           />
@@ -1053,9 +1012,12 @@ function EditProforma() {
 
           <button
             className="my-3 px-5 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white"
-           onClick={saveToLocalStorage}
+           onClick={()=>{
+            localStorage.setItem('proformaCopy',id)
+            location.href='/proforma'
+           }}
           >
-          Get Commercial
+          Copy Proforma
           </button>
 
       </span>

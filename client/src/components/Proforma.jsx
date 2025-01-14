@@ -196,6 +196,82 @@ function Proforma() {
     setWords(numberToWords(amount))
   },[total])
 
+  const getData = async()=>{
+    const id = localStorage.getItem('proformaCopy')
+    const res = await axios.get(`${SERVER_URL}/getProforma/${id}`)
+    if(res.data.success)
+      {
+        const data = res.data.data;
+
+        setInvoiceDate1(data.invoiceDate1);
+        setInvoiceDate2(data.invoiceDate2);
+        setInvoiceDate3(data.invoiceDate3);
+        setInvoiceDate4(data.invoiceDate4);
+
+        setConsignee1(data.consignee1);
+        setConsignee2(data.consignee2);
+        setConsignee3(data.consignee3);
+        setConsignee4(data.consignee4);
+        setConsignee5(data.consignee5);
+        setConsignee6(data.consignee6);
+
+        setCoo(data.coo);
+        setCofd(data.cofd);
+
+        setMarks1(data.marks1);
+        setMarks2(data.marks2);
+        setMarks3(data.marks3);
+        setMarks4(data.marks4);
+        setMarks5(data.marks5);
+
+        setNo1(data.no1);
+        setNo2(data.no2);
+        setNo3(data.no3);
+        setNo4(data.no4);
+        setNo5(data.no5);
+
+        setDesc1(data.desc1);
+        setDesc2(data.desc2);
+        setDesc3(data.desc3);
+        setDesc4(data.desc4);
+        setDesc5(data.desc5);
+
+        setQty1(data.qty1);
+        setQty2(data.qty2);
+        setQty3(data.qty3);
+        setQty4(data.qty4);
+        setQty5(data.qty5);
+
+        setPrice1(data.price1);
+        setPrice2(data.price2);
+        setPrice3(data.price3);
+        setPrice4(data.price4);
+        setPrice5(data.price5);
+
+        setTotal1(data.total1);
+        setTotal2(data.total2);
+        setTotal3(data.total3);
+        setTotal4(data.total4);
+        setTotal5(data.total5);
+
+        setTotal(data.total);
+        setWords(data.words);
+        setProduct(data.product);
+              
+      }
+      else
+      {
+        toast.error("UNKNOWN ERROR")
+      }
+  }
+
+  useEffect(()=>{
+ if(localStorage.getItem('proformaCopy'))
+ {
+  getData()
+ }
+  },[])
+
   return (
     <>
       <div className="p-10 mt-10 border-2 border-black">

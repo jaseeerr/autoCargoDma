@@ -196,116 +196,194 @@ function Commercial() {
     setWords(numberToWords(amount))
   },[total])
 
-  useEffect(() => {
-    const preset = localStorage.getItem('preset');
-    if (preset == "1") {
-      setConsignee1(localStorage.getItem('consignee1') || "");
-      setConsignee2(localStorage.getItem('consignee2') || "");
-      setConsignee3(localStorage.getItem('consignee3') || "");
-      setConsignee4(localStorage.getItem('consignee4') || "");
-      setConsignee5(localStorage.getItem('consignee5') || "");
-      setConsignee6(localStorage.getItem('consignee6') || "");
+  // useEffect(() => {
+  //   const preset = localStorage.getItem('preset');
+  //   if (preset == "1") {
+  //     setConsignee1(localStorage.getItem('consignee1') || "");
+  //     setConsignee2(localStorage.getItem('consignee2') || "");
+  //     setConsignee3(localStorage.getItem('consignee3') || "");
+  //     setConsignee4(localStorage.getItem('consignee4') || "");
+  //     setConsignee5(localStorage.getItem('consignee5') || "");
+  //     setConsignee6(localStorage.getItem('consignee6') || "");
 
-      setCoo(localStorage.getItem('coo') || "");
-      setCofd(localStorage.getItem('cofd') || "");
+  //     setCoo(localStorage.getItem('coo') || "");
+  //     setCofd(localStorage.getItem('cofd') || "");
 
-      setMarks1(localStorage.getItem('marks1') || "");
-      setMarks2(localStorage.getItem('marks2') || "");
-      setMarks3(localStorage.getItem('marks3') || "");
-      setMarks4(localStorage.getItem('marks4') || "");
-      setMarks5(localStorage.getItem('marks5') || "");
+  //     setMarks1(localStorage.getItem('marks1') || "");
+  //     setMarks2(localStorage.getItem('marks2') || "");
+  //     setMarks3(localStorage.getItem('marks3') || "");
+  //     setMarks4(localStorage.getItem('marks4') || "");
+  //     setMarks5(localStorage.getItem('marks5') || "");
 
-      setNo1(localStorage.getItem('no1') || "");
-      setNo2(localStorage.getItem('no2') || "");
-      setNo3(localStorage.getItem('no3') || "");
-      setNo4(localStorage.getItem('no4') || "");
-      setNo5(localStorage.getItem('no5') || "");
+  //     setNo1(localStorage.getItem('no1') || "");
+  //     setNo2(localStorage.getItem('no2') || "");
+  //     setNo3(localStorage.getItem('no3') || "");
+  //     setNo4(localStorage.getItem('no4') || "");
+  //     setNo5(localStorage.getItem('no5') || "");
 
-      setDesc1(localStorage.getItem('desc1') || "");
-      setDesc2(localStorage.getItem('desc2') || "");
-      setDesc3(localStorage.getItem('desc3') || "");
-      setDesc4(localStorage.getItem('desc4') || "");
-      setDesc5(localStorage.getItem('desc5') || "");
+  //     setDesc1(localStorage.getItem('desc1') || "");
+  //     setDesc2(localStorage.getItem('desc2') || "");
+  //     setDesc3(localStorage.getItem('desc3') || "");
+  //     setDesc4(localStorage.getItem('desc4') || "");
+  //     setDesc5(localStorage.getItem('desc5') || "");
 
-      setQty1(localStorage.getItem('qty1') || "");
-      setQty2(localStorage.getItem('qty2') || "");
-      setQty3(localStorage.getItem('qty3') || "");
-      setQty4(localStorage.getItem('qty4') || "");
-      setQty5(localStorage.getItem('qty5') || "");
+  //     setQty1(localStorage.getItem('qty1') || "");
+  //     setQty2(localStorage.getItem('qty2') || "");
+  //     setQty3(localStorage.getItem('qty3') || "");
+  //     setQty4(localStorage.getItem('qty4') || "");
+  //     setQty5(localStorage.getItem('qty5') || "");
 
-      setPrice1(localStorage.getItem('price1') || "");
-      setPrice2(localStorage.getItem('price2') || "");
-      setPrice3(localStorage.getItem('price3') || "");
-      setPrice4(localStorage.getItem('price4') || "");
-      setPrice5(localStorage.getItem('price5') || "");
+  //     setPrice1(localStorage.getItem('price1') || "");
+  //     setPrice2(localStorage.getItem('price2') || "");
+  //     setPrice3(localStorage.getItem('price3') || "");
+  //     setPrice4(localStorage.getItem('price4') || "");
+  //     setPrice5(localStorage.getItem('price5') || "");
 
-      setTotal1(localStorage.getItem('total1') || "");
-      setTotal2(localStorage.getItem('total2') || "");
-      setTotal3(localStorage.getItem('total3') || "");
-      setTotal4(localStorage.getItem('total4') || "");
-      setTotal5(localStorage.getItem('total5') || "");
+  //     setTotal1(localStorage.getItem('total1') || "");
+  //     setTotal2(localStorage.getItem('total2') || "");
+  //     setTotal3(localStorage.getItem('total3') || "");
+  //     setTotal4(localStorage.getItem('total4') || "");
+  //     setTotal5(localStorage.getItem('total5') || "");
 
-      setTotal(localStorage.getItem('total') || "");
-      setWords(localStorage.getItem('words') || "");
+  //     setTotal(localStorage.getItem('total') || "");
+  //     setWords(localStorage.getItem('words') || "");
 
-      setProduct(localStorage.getItem('product') || "");
+  //     setProduct(localStorage.getItem('product') || "");
 
-      // localStorage.removeItem('consignee1');
-      // localStorage.removeItem('consignee2');
-      // localStorage.removeItem('consignee3');
-      // localStorage.removeItem('consignee4');
-      // localStorage.removeItem('consignee5');
-      // localStorage.removeItem('consignee6');
+  //     // localStorage.removeItem('consignee1');
+  //     // localStorage.removeItem('consignee2');
+  //     // localStorage.removeItem('consignee3');
+  //     // localStorage.removeItem('consignee4');
+  //     // localStorage.removeItem('consignee5');
+  //     // localStorage.removeItem('consignee6');
   
-      // localStorage.removeItem('coo');
-      // localStorage.removeItem('cofd');
+  //     // localStorage.removeItem('coo');
+  //     // localStorage.removeItem('cofd');
   
-      // localStorage.removeItem('marks1');
-      // localStorage.removeItem('marks2');
-      // localStorage.removeItem('marks3');
-      // localStorage.removeItem('marks4');
-      // localStorage.removeItem('marks5');
+  //     // localStorage.removeItem('marks1');
+  //     // localStorage.removeItem('marks2');
+  //     // localStorage.removeItem('marks3');
+  //     // localStorage.removeItem('marks4');
+  //     // localStorage.removeItem('marks5');
   
-      // localStorage.removeItem('no1');
-      // localStorage.removeItem('no2');
-      // localStorage.removeItem('no3');
-      // localStorage.removeItem('no4');
-      // localStorage.removeItem('no5');
+  //     // localStorage.removeItem('no1');
+  //     // localStorage.removeItem('no2');
+  //     // localStorage.removeItem('no3');
+  //     // localStorage.removeItem('no4');
+  //     // localStorage.removeItem('no5');
   
-      // localStorage.removeItem('desc1');
-      // localStorage.removeItem('desc2');
-      // localStorage.removeItem('desc3');
-      // localStorage.removeItem('desc4');
-      // localStorage.removeItem('desc5');
+  //     // localStorage.removeItem('desc1');
+  //     // localStorage.removeItem('desc2');
+  //     // localStorage.removeItem('desc3');
+  //     // localStorage.removeItem('desc4');
+  //     // localStorage.removeItem('desc5');
   
-      // localStorage.removeItem('qty1');
-      // localStorage.removeItem('qty2');
-      // localStorage.removeItem('qty3');
-      // localStorage.removeItem('qty4');
-      // localStorage.removeItem('qty5');
+  //     // localStorage.removeItem('qty1');
+  //     // localStorage.removeItem('qty2');
+  //     // localStorage.removeItem('qty3');
+  //     // localStorage.removeItem('qty4');
+  //     // localStorage.removeItem('qty5');
   
-      // localStorage.removeItem('price1');
-      // localStorage.removeItem('price2');
-      // localStorage.removeItem('price3');
-      // localStorage.removeItem('price4');
-      // localStorage.removeItem('price5');
+  //     // localStorage.removeItem('price1');
+  //     // localStorage.removeItem('price2');
+  //     // localStorage.removeItem('price3');
+  //     // localStorage.removeItem('price4');
+  //     // localStorage.removeItem('price5');
   
-      // localStorage.removeItem('total1');
-      // localStorage.removeItem('total2');
-      // localStorage.removeItem('total3');
-      // localStorage.removeItem('total4');
-      // localStorage.removeItem('total5');
+  //     // localStorage.removeItem('total1');
+  //     // localStorage.removeItem('total2');
+  //     // localStorage.removeItem('total3');
+  //     // localStorage.removeItem('total4');
+  //     // localStorage.removeItem('total5');
   
-      // localStorage.removeItem('total');
-      // localStorage.removeItem('words');
+  //     // localStorage.removeItem('total');
+  //     // localStorage.removeItem('words');
   
-      // localStorage.removeItem('product');
+  //     // localStorage.removeItem('product');
   
-      // localStorage.removeItem('preset');
+  //     // localStorage.removeItem('preset');
       
-    }
-  }, []);
+  //   }
+  // }, []);
 
+
+  useEffect(()=>{
+     if(localStorage.getItem('commercialCopy'))
+     {
+      getData()
+     }
+  },[])
+
+  const getData = async()=>{
+    const id = localStorage.getItem('commercialCopy')
+    const res = await axios.get(`${SERVER_URL}/getCommercial/${id}`)
+    if(res.data.success)
+      {
+        const data = res.data.data;
+
+        setAcid(data.acid)
+
+        setInvoiceDate1(data.invoiceDate1);
+        setInvoiceDate2(data.invoiceDate2);
+        setInvoiceDate3(data.invoiceDate3);
+        setInvoiceDate4(data.invoiceDate4);
+
+        setConsignee1(data.consignee1);
+        setConsignee2(data.consignee2);
+        setConsignee3(data.consignee3);
+        setConsignee4(data.consignee4);
+        setConsignee5(data.consignee5);
+        setConsignee6(data.consignee6);
+
+        setCoo(data.coo);
+        setCofd(data.cofd);
+
+        setMarks1(data.marks1);
+        setMarks2(data.marks2);
+        setMarks3(data.marks3);
+        setMarks4(data.marks4);
+        setMarks5(data.marks5);
+
+        setNo1(data.no1);
+        setNo2(data.no2);
+        setNo3(data.no3);
+        setNo4(data.no4);
+        setNo5(data.no5);
+
+        setDesc1(data.desc1);
+        setDesc2(data.desc2);
+        setDesc3(data.desc3);
+        setDesc4(data.desc4);
+        setDesc5(data.desc5);
+
+        setQty1(data.qty1);
+        setQty2(data.qty2);
+        setQty3(data.qty3);
+        setQty4(data.qty4);
+        setQty5(data.qty5);
+
+        setPrice1(data.price1);
+        setPrice2(data.price2);
+        setPrice3(data.price3);
+        setPrice4(data.price4);
+        setPrice5(data.price5);
+
+        setTotal1(data.total1);
+        setTotal2(data.total2);
+        setTotal3(data.total3);
+        setTotal4(data.total4);
+        setTotal5(data.total5);
+
+        setTotal(data.total);
+        setWords(data.words);
+        setProduct(data.product);
+              
+      }
+      else
+      {
+        toast.error("UNKNOWN ERROR")
+      }
+  }
 
   return (
     <>

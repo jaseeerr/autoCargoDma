@@ -283,6 +283,17 @@ function EditCommercial() {
 
   return (
     <>
+    <span className="flex justify-center">
+    <button
+            className="my-3 ml-10 px-5 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white"
+           onClick={()=>{
+            localStorage.setItem('commercialCopy',id)
+            location.href='/'
+           }}
+          >
+            Copy Commercial
+          </button>
+    </span>
       <div className="p-10 mt-10 border-2 border-black">
       <h2 className="text-center font-bold mb-4 underline">
           INVOICE TYPE
@@ -359,7 +370,8 @@ function EditCommercial() {
           <input
             type="text"
             value={acid}
-            onChange={(e) =>setAcid(e.target.value)}
+            readOnly
+            // onChange={(e) =>setAcid(e.target.value)}
             className="border border-black p-1 rounded-md ml-3 w-1/6"
             placeholder="line 2"
           />
@@ -1058,7 +1070,23 @@ Foreign Exporter Country Code: AE
           >
             Update Invoice
           </button>
+
+          <button
+            className="my-3 ml-10 px-5 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer text-white"
+           onClick={()=>{
+            localStorage.setItem('commercialCopy',id)
+            location.href='/'
+           }}
+          >
+            Copy Commercial
+          </button>
+
       </span>
+  
+      <span className="flex justify-center">
+      
+      </span>
+          
     </>
   );
 }
