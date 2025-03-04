@@ -767,6 +767,28 @@ function EditCommercial() {
          
         </span>
 
+
+        <div className="flex flex-col items-center space-y-4 p-6 bg-gray-100 rounded-lg shadow-md w-80 mx-auto">
+            <label htmlFor="bankSelect" className="text-lg font-semibold text-gray-700">
+                Select a Bank:
+            </label>
+
+            <select
+                id="bankSelect"
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setSelectedBank(e.target.value)}
+            >
+                <option value="">-- Choose a Bank --</option>
+                <option value="ENBD">ENBD</option>
+                <option value="CBI">CBI</option>
+                <option value="ARAB_AFRICAN">ARAB AFRICAN</option>
+            </select>
+
+            <p className="text-gray-700 font-medium">
+                {selectedBank ? `You selected: ${selectedBank}` : "No bank selected"}
+            </p>
+        </div>
+
       </div>
       <div className="mb-5 mt-5 p-2" ref={ref}>
         <div className="flex w-full justify-between items-start">
