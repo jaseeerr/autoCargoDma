@@ -65,7 +65,55 @@ function Proforma() {
 
   const [product,setProduct] = useState('UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023')
 
+  // bank details
+  const [selectedBank, setSelectedBank] = useState("");
 
+  const [beneficiary,setBeneficiary] = useState('DMA TOBACCO TRADING LLC')
+  const [bank,setBank] = useState('CBI BANK (COMMERCIAL BANK INTERNATIONAL)')
+  const [branch,setBranch] = useState('JUMEIRAH BRANCH')
+  const [accountNumber,setAccountNumber] = useState('100090172505')
+  const [swift,setSwift] = useState('CLIBIAEAD')
+  const [iban,setIban] = useState('AE330220000100090172505')
+
+  const bankDetails = {
+    "CBI": {
+        beneficiary: "DMA TOBACCO TRADING LLC",
+        bank: "CBI BANK (COMMERCIAL BANK INTERNATIONAL)",
+        branch: "JUMEIRAH BRANCH",
+        accountNumber: "100090172505",
+        swift: "CLIBIAEAD",
+        iban: "AE330220000100090172505",
+    },
+    "ENBD": {
+        beneficiary: "DMA TOBACCO TRADING LLC",
+        bank: "EMIRATES ENBD BANK",
+        branch: "Al Muraqabbat Branch",
+        accountNumber: "1025887751702",
+        swift: "EBILAEAD",
+        iban: "AE560260001025887751702",
+    },
+    "ARAB_AFRICAN": {
+        beneficiary: "DMA TOBACCO TRADING LLC",
+        bank: "ARAB AFRICAN INTERNATIONAL BANK (AAIB)",
+        branch: "DUBAI BRANCH",
+        accountNumber: "DUB-040801-3931-USD-001",
+        swift: "ARAIAEAD",
+        iban: "AE470070040801393109001",
+    }
+};
+
+
+useEffect(() => {
+  if (selectedBank && bankDetails[selectedBank]) {
+      const details = bankDetails[selectedBank];
+      setBeneficiary(details.beneficiary);
+      setBank(details.bank);
+      setBranch(details.branch);
+      setAccountNumber(details.accountNumber);
+      setSwift(details.swift);
+      setIban(details.iban);
+  }
+}, [selectedBank]);
  
 
 
@@ -669,7 +717,35 @@ function Proforma() {
          
         </span>
 
+
+        <div className="flex flex-col items-center space-y-4 p-6 bg-gray-100 rounded-lg shadow-md w-80 mx-auto">
+            <label htmlFor="bankSelect" className="text-lg font-semibold text-gray-700">
+                Select a Bank:
+            </label>
+
+            <select
+                id="bankSelect"
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setSelectedBank(e.target.value)}
+            >
+                <option value="">-- Choose a Bank --</option>
+                <option value="ENBD">ENBD</option>
+                <option value="CBI">CBI</option>
+                <option value="ARAB_AFRICAN">ARAB AFRICAN</option>
+            </select>
+
+            <p className="text-gray-700 font-medium">
+                {selectedBank ? `You selected: ${selectedBank}` : "No bank selected"}
+            </p>
+        </div>
+
       </div>
+
+
+      
+
+
+
       <div className="mb-5 mt-5 p-2" ref={ref}>
         <div className="flex w-full justify-between items-start">
           <span className="mr-5">
@@ -886,22 +962,22 @@ function Proforma() {
                           <strong className="mr-[85px]">
                             Name of the Beneficiary :
                           </strong>{" "}
-                          DMA TOBACCO TRADING LLC
+                          {beneficiary}
                         </p>
                         <p className="text-start ml-1">
                           <strong className="mr-[125px]">
                             Bank Account with :
                           </strong>{" "}
-                          CBI BANK{" "}
-                          <small>(COMMERCIAL BANK INTERNATIONAL)</small>
+                         {bank}
+                        
                         </p>
                         <p className="text-start ml-1">
                           <strong className="mr-[215px]">Branch : </strong>
-                          JUMEIRAH BRAANCH{" "}
+                         {branch}
                         </p>
                         <p className="text-start ml-1">
                           <strong className="mr-[180px]">Account no :</strong>{" "}
-                          100090172505
+                          {accountNumber}
                         </p>
                       </span>
 
@@ -916,9 +992,9 @@ function Proforma() {
 
                     <div className="flex justify-between">
                       <p>Swift Code </p>
-                      <p>CLIBIAEAD</p>
+                      <p>{swift}</p>
                       <p>IBAN</p>
-                      <p className="mr-16">AE330220000100090172505</p>
+                      <p className="mr-16">{iban}</p>
                     </div>
                   </div>
                 </td>
