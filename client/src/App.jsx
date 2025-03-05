@@ -9,6 +9,11 @@ import ViewProforma from './components/ViewProforma';
 import EditProforma from './components/EditProforma';
 import ViewCommercial from './components/ViewCommercial';
 import EditCommercial from './components/EditCommercial';
+import Proforma1 from './components/v2/ProformaV2';
+import EditProformaV2 from './components/v2/EditProformaV2';
+import ProformaV2 from './components/v2/ProformaV2';
+import CommercialV2 from './components/v2/CommercialV2';
+import EditCommercialV2 from './components/v2/EditCommercialV2';
 function App() {
     const [data, setData] = useState([]);
 
@@ -17,14 +22,16 @@ function App() {
        <div className="App">
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<Commercial />} />
+                    <Route path="/" element={<CommercialV2 />} />
+                    <Route path="/test" element={<ProformaV2 />} />
+
                    
-                    <Route path="/proforma" element={<Proforma />} />
-                    <Route path="/commercial" element={<Commercial />} />
+                    <Route path="/proforma" element={<ProformaV2 />} />
+                    <Route path="/commercial" element={<CommercialV2 />} />
                     <Route path="/viewProforma" element={<ViewProforma />} />
-                    <Route path="/editProforma/:id" element={<EditProforma />} />
+                    <Route path="/editProforma/:id" element={<EditProformaV2 />} />
                     <Route path="/viewCommercial" element={<ViewCommercial />} />
-                    <Route path="/editCommerical/:id" element={<EditCommercial />} />
+                    <Route path="/editCommerical/:id" element={<EditCommercialV2 />} />
 
                 </Routes>
             </div>

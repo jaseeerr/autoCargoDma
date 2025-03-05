@@ -1,7 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const proformaSchema = new Schema({
+const invoiceItemSchema = new Schema({
+  marks: String,
+  no: String,
+  desc: String,
+  qty: String,
+  price: String,
+  total: String,
+})
+
+const proformaSchema = new Schema(
+  {
     invoiceDate1: String,
     invoiceDate2: String,
     invoiceDate3: String,
@@ -14,39 +24,19 @@ const proformaSchema = new Schema({
     consignee6: String,
     coo: String,
     cofd: String,
-    marks1: String,
-    marks2: String,
-    marks3: String,
-    marks4: String,
-    marks5: String,
-    no1: String,
-    no2: String,
-    no3: String,
-    no4: String,
-    no5: String,
-    desc1: String,
-    desc2: String,
-    desc3: String,
-    desc4: String,
-    desc5: String,
-    qty1: String,
-    qty2: String,
-    qty3: String,
-    qty4: String,
-    qty5: String,
-    price1: String,
-    price2: String,
-    price3: String,
-    price4: String,
-    price5: String,
-    total1: String,
-    total2: String,
-    total3: String,
-    total4: String,
-    total5: String,
+    invoiceItems: [invoiceItemSchema],
     total: String,
     words: String,
-    product: String
-}, { timestamps: true });
+    product: String,
+    beneficiary: String,
+    bank: String,
+    branch: String,
+    accountNumber: String,
+    swift: String,
+    iban: String,
+  },
+  { timestamps: true },
+)
 
-module.exports = mongoose.model('Proforma', proformaSchema);
+module.exports = mongoose.model("Proforma", proformaSchema)
+
