@@ -5,8 +5,9 @@ import { SERVER_URL } from "../../../urls/urls"
 import toast from "react-hot-toast"
 import { useParams } from "react-router-dom"
 import { Building2, Printer, Save, DollarSign, Package, FileText, Globe, CreditCard, Copy } from "lucide-react"
-
+import MyAxiosInstance from "../../utils/axios"
 function EditCommercialV2() {
+  const axiosInstance = MyAxiosInstance()
   const ref = useRef()
   const { id } = useParams()
 
@@ -201,10 +202,12 @@ function EditCommercialV2() {
       iban,
     }
     try {
-      const res = await axios.post(`${SERVER_URL}/updateCommercial/${id}`, { data })
+      toast.loading('Updating')
+      const res = await axiosInstance.post(`${SERVER_URL}/updateCommercial/${id}`, { data })
+      toast.dismiss()
       if (res.data.success) {
-        toast.success("Saved")
-        document.getElementById("btn").click()
+        toast.success("Done")
+        document.getElementById("printBtn").click()
       } else {
         toast.error("Error")
       }
@@ -219,7 +222,7 @@ function EditCommercialV2() {
   // Get commercial invoice data
   const getData = useCallback(async () => {
     try {
-      const res = await axios.get(`${SERVER_URL}/getCommercial/${id}`)
+      const res = await axiosInstance.get(`${SERVER_URL}/getCommercial/${id}`)
       if (res.data.success) {
         const data = res.data.data
 
@@ -547,56 +550,78 @@ function EditCommercialV2() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.marks}
-                                              {index < invoiceItems.length - 1 && item.marks && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.no}
-                                              {index < invoiceItems.length - 1 && item.no && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.desc}
-                                              {index < invoiceItems.length - 1 && item.desc && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.qty}
-                                              {index < invoiceItems.length - 1 && item.qty && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.price}
-                                              {index < invoiceItems.length - 1 && item.price && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                        <td className="border-2 border-gray-800 p-2 align-top">
-                                          {invoiceItems.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                              {item.total}
-                                              {index < invoiceItems.length - 1 && item.total && <br />}
-                                            </React.Fragment>
-                                          ))}
-                                        </td>
-                                      </tr>
+                {invoiceItems.map((item, index) => (
+                    <tr key={index} className="border-t border-gray-200">
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.marks}
+                          onChange={(e) => updateInvoiceItem(index, "marks", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.no}
+                          onChange={(e) => updateInvoiceItem(index, "no", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.desc}
+                          onChange={(e) => updateInvoiceItem(index, "desc", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.qty}
+                          onChange={(e) => updateInvoiceItem(index, "qty", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.price}
+                          onChange={(e) => updateInvoiceItem(index, "price", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="text"
+                          value={item.total}
+                          onChange={(e) => updateInvoiceItem(index, "total", e.target.value)}
+                          className="w-full px-2 py-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-2 text-center">
+                        <button
+                          onClick={() => removeInvoiceItem(index)}
+                          className="p-1 text-red-500 hover:text-red-700 focus:outline-none"
+                          title="Remove Item"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M18 6L6 18M6 6l12 12"></path>
+                          </svg>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -736,7 +761,7 @@ function EditCommercialV2() {
             </button>
             <ReactPrint
               trigger={() => (
-                <button className="flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <button id="printBtn" className="flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                   <Printer className="mr-2 h-5 w-5" /> Print Invoice
                 </button>
               )}
@@ -940,11 +965,11 @@ function EditCommercialV2() {
               <p className="col-span-2">{accountNumber}</p>
             </div>
           </div>
-          <div className="w-1/3 flex justify-center items-center">
+          <div className="w-1/3 flex justify-end mr-8 items-center">
             <img
               src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
               alt="Seal"
-              className="w-32 h-auto"
+              className="w-32 h-32"
             />
           </div>
         </div>

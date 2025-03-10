@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { SERVER_URL } from '../../urls/urls';
 import toast from "react-hot-toast"
+import MyAxiosInstance from '../utils/axios';
 function ViewProforma() {
-    
+    const axiosInstance = MyAxiosInstance()
 
       const [data,setData] = useState([
         { createdAt: '2023-06-01', consignee1: 'John Doe', total: '1000', product: 'Product A' },
@@ -13,7 +14,7 @@ function ViewProforma() {
 
 
       const getData = async()=>{
-        const res = await axios.get(`${SERVER_URL}/getProforma`)
+        const res = await axiosInstance.get(`${SERVER_URL}/getProforma`)
         if(res.data.success)
             {
                 toast.success("Data Fetched")

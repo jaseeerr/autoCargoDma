@@ -4,8 +4,9 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import { SERVER_URL } from "../../../urls/urls"
 import { Building2, Printer, Save, DollarSign, Package, FileText, Globe, CreditCard } from "lucide-react"
-
+import MyAxiosInstance from "../../utils/axios"
 function CommercialV2() {
+  const axiosInstance = MyAxiosInstance()
   const ref = useRef()
 
   // Invoice details state
@@ -33,16 +34,16 @@ function CommercialV2() {
   // Invoice items state
   const [invoiceItems, setInvoiceItems] = useState([
     {
-      marks: "Net WT    : 44316.0 Kgs",
-      no: "& Kind of Pkgs",
+      marks: "Total Net WT : 44316.0 Kgs",
+      no: "228 Cartons",
       desc: "DFCMW/3",
       qty: "10652.40",
       price: "2.40",
       total: "25,565.76",
     },
     {
-      marks: "Gross WT : 47371.2 Kgs",
-      no: "228 Cartons",
+      marks: "Total Gross WT : 47371.2 Kgs",
+      no: "",
       desc: "DFCMW/4",
       qty: "11481.90",
       price: "2.40",
@@ -200,10 +201,11 @@ function CommercialV2() {
       iban,
     }
     try {
-      const res = await axios.post(`${SERVER_URL}/newCommercial`, { data })
+      const res = await axiosInstance.post(`${SERVER_URL}/newCommercial`, { data })
       if (res.data.success) {
         toast.success("Saved")
-        document.getElementById("printBtn").click()
+        location.href=`/editCommerical/${res.data.id}`
+        // document.getElementById("printBtn").click()
       } else {
         toast.error("Error")
       }
@@ -280,7 +282,7 @@ function CommercialV2() {
     if (!id) return
 
     try {
-      const res = await axios.get(`${SERVER_URL}/getCommercial/${id}`)
+      const res = await axiosInstance.get(`${SERVER_URL}/getCommercial/${id}`)
       if (res.data.success) {
         const data = res.data.data
 
@@ -344,7 +346,7 @@ function CommercialV2() {
       <div className="max-w-7xl mx-auto p-6">
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <FileText className="mr-2" /> Commercial Invoice Editor
+            <FileText className="mr-2" /> Commercial Invoice
           </h1>
 
           {/* Invoice Type */}
@@ -439,7 +441,7 @@ function CommercialV2() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
                 <input
                   type="text"
                   value={consignee1}
@@ -448,7 +450,7 @@ function CommercialV2() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 2</label>
                 <input
                   type="text"
                   value={consignee2}
@@ -457,7 +459,7 @@ function CommercialV2() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 3</label>
                 <input
                   type="text"
                   value={consignee3}
@@ -466,7 +468,7 @@ function CommercialV2() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 2</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 4</label>
                 <input
                   type="text"
                   value={consignee4}
@@ -475,7 +477,7 @@ function CommercialV2() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 5</label>
                 <input
                   type="text"
                   value={consignee5}
@@ -484,7 +486,7 @@ function CommercialV2() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 6</label>
                 <input
                   type="text"
                   value={consignee6}
@@ -958,11 +960,11 @@ function CommercialV2() {
               <p className="col-span-2">{accountNumber}</p>
             </div>
           </div>
-          <div className="w-1/3 flex justify-center items-center">
+          <div className="w-1/3 flex justify-end mr-8 items-center">
             <img
               src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
               alt="Seal"
-              className="w-32 h-auto"
+              className="w-32 h-32"
             />
           </div>
         </div>

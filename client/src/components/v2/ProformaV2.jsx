@@ -8,8 +8,9 @@ import axios from "axios"
 import { SERVER_URL } from "../../../urls/urls"
 import toast from "react-hot-toast"
 import { Building2, Printer, Save, DollarSign, Package, FileText, Globe, CreditCard } from "lucide-react"
-
+import MyAxiosInstance from "../../utils/axios"
 function ProformaV2() {
+  const axiosInstance = MyAxiosInstance()
   const ref = useRef()
   // Invoice date state
   const [invoiceDate1, setInvoiceDate1] = useState("Invoice No. & Date")
@@ -35,16 +36,16 @@ function ProformaV2() {
   // Invoice items state
   const [invoiceItems, setInvoiceItems] = useState([
     {
-      marks: "Net WT    : 44316.0 Kgs",
-      no: "& Kind of Pkgs",
+      marks: "Total Net WT: 44316.0 Kgs",
+      no: "228 Cartons",
       desc: "DFCMW/3",
       qty: "10652.40",
       price: "2.40",
       total: "25,565.76",
     },
     {
-      marks: "Gross WT : 47371.2 Kgs",
-      no: "228 Cartons",
+      marks: "Total Gross WT: 47371.2 Kgs",
+      no: "",
       desc: "DFCMW/4",
       qty: "11481.90",
       price: "2.40",
@@ -235,10 +236,11 @@ function ProformaV2() {
     }
     toast.dismiss()
     try {
-      const res = await axios.post(`${SERVER_URL}/newProforma`, { data })
+      const res = await axiosInstance.post(`${SERVER_URL}/newProforma`, { data })
       if (res.data.success) {
         toast.success("Saved")
-        document.getElementById("printBtn").click()
+        location.href=`/editProforma/${res.data.id}`
+        // document.getElementById("printBtn").click()
       } else {
         toast.error("Error")
       }
@@ -269,7 +271,7 @@ function ProformaV2() {
     if (!id) return
 
     try {
-      const res = await axios.get(`${SERVER_URL}/getProforma/${id}`)
+      const res = await axiosInstance.get(`${SERVER_URL}/getProforma/${id}`)
       if (res.data.success) {
         const data = res.data.data
 
@@ -334,7 +336,7 @@ function ProformaV2() {
       <div className="max-w-7xl mx-auto p-6">
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <FileText className="mr-2" /> Proforma Invoice Editor
+            <FileText className="mr-2" /> Proforma Invoice 
           </h1>
 
           {/* Invoice Date Section */}
@@ -914,13 +916,13 @@ function ProformaV2() {
                 <p className="col-span-2">{accountNumber}</p>
               </div>
             </div>
-            <div className="w-1/3 flex justify-center items-center">
-              <img
-                src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
-                alt="Seal"
-                className="w-32 h-auto"
-              />
-            </div>
+            <div className="w-1/3 flex justify-end mr-8 items-center">
+            <img
+              src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
+              alt="Seal"
+              className="w-32 h-32"
+            />
+          </div>
           </div>
 
           <div className="flex justify-between mt-4 border-t border-gray-300 pt-2">
