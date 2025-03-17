@@ -967,6 +967,10 @@ function EditCommercialV2() {
           </div>
           <div className="w-1/3 flex justify-end mr-8 items-center">
             <img
+            onDoubleClick={()=>{
+              document.getElementById('seal').style.display = 'none'
+            }}
+            id="seal"
               src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
               alt="Seal"
               className="w-32 h-32"
