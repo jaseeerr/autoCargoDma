@@ -114,6 +114,15 @@ function EditProformaV2() {
       setSwift(details.swift)
       setIban(details.iban)
     }
+    else
+    {
+      setBeneficiary("")
+      setBank("")
+      setBranch("")
+      setAccountNumber("")
+      setSwift("")
+      setIban("")
+    }
   }, [selectedBank])
 
   // Convert number to words
@@ -920,6 +929,10 @@ function EditProformaV2() {
                  </div>
                  <div className="w-1/3 flex justify-end mr-8 items-center">
             <img
+             onDoubleClick={()=>{
+              document.getElementById('Seal').style.display = 'none'
+            }}
+            id="Seal"
               src="https://res.cloudinary.com/dfethvtz3/image/upload/v1717530100/autoCargo/0c020972-51f3-4eb8-8b3e-13409fc9cec1.png"
               alt="Seal"
               className="w-32 h-32"

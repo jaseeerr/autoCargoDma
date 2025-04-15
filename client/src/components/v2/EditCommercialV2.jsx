@@ -114,6 +114,15 @@ function EditCommercialV2() {
       setSwift(details.swift)
       setIban(details.iban)
     }
+    else
+    {
+      setBeneficiary("")
+      setBank("")
+      setBranch("")
+      setAccountNumber("")
+      setSwift("")
+      setIban("")
+    }
   }, [selectedBank])
 
   // Convert number to words
