@@ -4,7 +4,7 @@ import axios from "axios"
 import { SERVER_URL } from "../../../urls/urls"
 import toast from "react-hot-toast"
 import { useParams } from "react-router-dom"
-import { Building2, Printer, Save, DollarSign, Package, FileText, Globe, CreditCard, Copy } from "lucide-react"
+import { Building2, Printer, Save, DollarSign,Euro, Package, FileText, Globe, CreditCard, Copy } from "lucide-react"
 import MyAxiosInstance from "../../utils/axios"
 function EditCommercialV2() {
   const axiosInstance = MyAxiosInstance()
@@ -65,6 +65,8 @@ function EditCommercialV2() {
   const [product, setProduct] = useState("UNMANUFACTURED MALAWI DARK FIRD TOBACCO- CROP 2023")
 
   const [acid, setAcid] = useState("1002405502024030052")
+  // currency
+  const [currency,setCurrency] = useState('')
 
   // Bank details state
   const [selectedBank, setSelectedBank] = useState("")
@@ -185,6 +187,7 @@ function EditCommercialV2() {
   const updateCommercial = async () => {
     toast.loading("Updating Commercial Invoice")
     const data = {
+      currency,
       type,
       invoiceDate1,
       invoiceDate2,
@@ -250,6 +253,8 @@ function EditCommercialV2() {
         setCofd(data.cofd)
         setBeneficiary(data.beneficiary)
         setBank(data.bank)
+        setCurrency(data.currency ? data.currency : 'USD' )
+
         setBranch(data.branch)
         setAccountNumber(data.accountNumber)
         setSwift(data.swift)
@@ -548,7 +553,7 @@ function EditCommercialV2() {
           {/* Invoice Items */}
           <div className="mb-8">
             <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-              <DollarSign className="mr-2 h-5 w-5" /> Invoice Items
+            {currency == 'USD' ? <DollarSign  className="mr-2 h-5 w-5" /> : <Euro  className="mr-2 h-5 w-5" />} Invoice Items
             </h2>
 
             <div className="overflow-x-auto">
@@ -560,7 +565,7 @@ function EditCommercialV2() {
                     <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Description</th>
                     <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Quantity</th>
                     <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Price/KG</th>
-                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Total USD</th>
+                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Total {currency}</th>
                     <th className="px-4 py-2 text-center text-sm font-medium text-gray-700">Actions</th>
                   </tr>
                 </thead>
@@ -693,7 +698,20 @@ function EditCommercialV2() {
               <CreditCard className="mr-2 h-5 w-5" /> Bank Details
             </h2>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <div className="mb-4">
+            <div className="flex w-full">
+           <div className="mb-4 w-full mr-3">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Select Currency</label>
+                <select
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">-- Choose a Currency --</option>
+                  <option value="USD">USD</option>
+                  <option value="EURO">EURO</option>
+                </select>
+              </div>
+              <div className="mb-4 w-full">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Select Bank</label>
                 <select
                   value={selectedBank}
@@ -706,6 +724,7 @@ function EditCommercialV2() {
                   <option value="ARAB_AFRICAN">ARAB AFRICAN</option>
                 </select>
               </div>
+           </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -895,7 +914,7 @@ function EditCommercialV2() {
             <th className="border-2 border-gray-800 p-2 text-sm">Description of Goods</th>
             <th className="border-2 border-gray-800 p-2 text-sm">Quantity</th>
             <th className="border-2 border-gray-800 p-2 text-sm">PRICE/KG</th>
-            <th className="border-2 border-gray-800 p-2 text-sm">TOTAL USD($)</th>
+            <th className="border-2 border-gray-800 p-2 text-sm">TOTAL {currency}({currency == 'USD' ? '$' : '€'})</th>
           </tr>
         </thead>
         <tbody>
@@ -956,7 +975,7 @@ function EditCommercialV2() {
       <div className="border-2 border-gray-800 p-4">
         <div className="flex justify-between mb-2">
           <p>Amount chargeable (In Words)</p>
-          <p className="font-bold">Total USD($) {total}</p>
+          <p className="font-bold">TOTAL {currency}({currency == 'USD' ? '$' : '€'}) {total}</p>
         </div>
         <p className="mb-4">( US Dollars {words} only).</p>
 

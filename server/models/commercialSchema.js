@@ -31,6 +31,7 @@ const commercialSchema = new Schema(
     invoiceItems: [invoiceItemSchema],
     total: String,
     words: String,
+    currency:String,
     product: String,
     acid: String,
     beneficiary: String,
