@@ -977,7 +977,7 @@ function EditCommercialV2() {
           <p>Amount chargeable (In Words)</p>
           <p className="font-bold">TOTAL {currency}({currency == 'USD' ? '$' : '€'}) {total}</p>
         </div>
-        <p className="mb-4">( US Dollars {words} only).</p>
+        <p className="mb-4">( {currency} {words} only).</p>
 
         <div className="flex justify-between">
           <div className="w-2/3">
