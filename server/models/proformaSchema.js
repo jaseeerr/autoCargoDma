@@ -32,6 +32,7 @@ const proformaSchema = new Schema(
     bank: String,
     branch: String,
     accountNumber: String,
+    currency:String,
     swift: String,
     iban: String,
   },
