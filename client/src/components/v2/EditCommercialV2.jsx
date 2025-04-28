@@ -248,6 +248,12 @@ function EditCommercialV2() {
         setConsignee6(data.consignee6)
         setCoo(data.coo)
         setCofd(data.cofd)
+        setBeneficiary(data.beneficiary)
+        setBank(data.bank)
+        setBranch(data.branch)
+        setAccountNumber(data.accountNumber)
+        setSwift(data.swift)
+        setIban(data.iban)
 
         // Handle both old and new data structures
         if (data.invoiceItems) {
