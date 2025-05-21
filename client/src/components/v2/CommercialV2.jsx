@@ -73,7 +73,7 @@ function CommercialV2() {
   const [bank, setBank] = useState("CBI BANK (COMMERCIAL BANK INTERNATIONAL)")
   const [branch, setBranch] = useState("JUMEIRAH BRANCH")
   const [accountNumber, setAccountNumber] = useState("100090172505")
-  const [swift, setSwift] = useState("CLIBIAEAD")
+  const [swift, setSwift] = useState("CLBIAEAD")
   const [iban, setIban] = useState("AE330220000100090172505")
 
   // Bank details mapping
@@ -83,7 +83,7 @@ function CommercialV2() {
       bank: "CBI BANK (COMMERCIAL BANK INTERNATIONAL)",
       branch: "JUMEIRAH BRANCH",
       accountNumber: "100090172505",
-      swift: "CLIBIAEAD",
+      swift: "CLBIAEAD",
       iban: "AE330220000100090172505",
     },
     ENBD: {
