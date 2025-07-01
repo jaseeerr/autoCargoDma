@@ -155,7 +155,7 @@ function ViewProforma() {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       <div className="flex items-center space-x-2">
                         <Calendar className="h-4 w-4" />
-                        <span>Invoice Date</span>
+                        <span>Invoice</span>
                       </div>
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -187,7 +187,7 @@ function ViewProforma() {
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">{item.invoiceDate2 || "N/A"}</div>
-                            <div className="text-sm text-gray-500">Invoice Date</div>
+                            <div className="text-sm text-gray-500">Invoice</div>
                           </div>
                         </div>
                       </td>
@@ -200,7 +200,7 @@ function ViewProforma() {
                         <div className="text-sm text-gray-900 max-w-xs truncate" title={item.product}>
                           {item.product || "N/A"}
                         </div>
-                        <div className="text-xs text-gray-500">Product Details</div>
+                        <div className="text-xs text-gray-500">Product</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <a
